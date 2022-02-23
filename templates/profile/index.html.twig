@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ user.userIdentifier "' Profile" }}{% endblock %}
+{% block title %}{{ user.userIdentifier ~ "'s Profile" }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
 
 {% block body %}
-    <div>
-        {{ }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">4e posmotret</a>
+        </div>
+    </nav>
+    <div class="container container-lg">
+        <h1 class="h-50">Profile</h1>
+        <div class="">
+            <div class="avatar">
+                <img class="avatar__image" src="{{ user.avatarUrl }}"/>
+            </div>
+            <div class="col-2">
+                {{ user.userIdentifier }}
+            </div>
+        </div>
     </div>
 {% endblock %}
