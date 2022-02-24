@@ -4,20 +4,16 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
 
 {% block body %}
     {{ parent()  }}
-    <div class="container container-lg">
-        <h1 class="h-50">Profile</h1>
-        <div class="">
-            <div class="avatar">
-                <img class="avatar__image" src="{{ user.avatarUrl }}"/>
-            </div>
-            <div class="col-2">
-                {{ user.userIdentifier }}
+    <div class="row m-sm-4">
+        <div class="bg-light rounded-3">
+            <img class="avatar avatar-128 bg-light rounded-circle text-white p-2" src="{{ user.avatarUrl }}"/>
+            <div class="mx-5">
+                <h1>{{ user.userIdentifier }}</h1>
             </div>
         </div>
     </div>
