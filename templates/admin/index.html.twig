@@ -3,11 +3,35 @@
 {% block title %}Hello!{% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Users</h1>
-    {% for user in users %}
-        {{ user.userIdentifier }}<br>
-    {% endfor %}
-</div>
+    {{ parent() }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Reg. Date</th>
+                <th scope="col">Locale</th>
+                <th scope="col">Theme</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>
+                        <a href="/profile/{{ user.id }}">
+                            <div>
+                                {{ user.userIdentifier }}
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.registerDate|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ user.locale }}</td>
+                    <td>{{ user.theme ? 'Dark' : 'Light' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

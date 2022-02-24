@@ -11,19 +11,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
+    #[Route('/profile', name: 'profile_stub')]
+    public function profile(){
+        return $this->redirectToRoute('main');
+    }
+
     #[Route('/profile/{id}', name: 'profile')]
     public function index(int $id, ManagerRegistry $doctrine): Response
     {
-
         $entityManager = $doctrine->getManager();
         /**
          * @var User $currentUser
          */
         $currentUser = $this->getUser();
-//        if($currentUser->getUserIdentifier() === 'admin'){
-//            $currentUser->setRoles(['ROLE_ADMIN']);
-//            $entityManager->flush();
-//        }
         $user = $entityManager->getRepository(User::class)->find($id);
         if($user){
             return $this->render('profile/index.html.twig', [

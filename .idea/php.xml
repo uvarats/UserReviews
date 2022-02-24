@@ -122,6 +122,7 @@
       <path value="$PROJECT_DIR$/vendor/aego/oauth2-yandex" />
       <path value="$PROJECT_DIR$/vendor/league/oauth2-facebook" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
