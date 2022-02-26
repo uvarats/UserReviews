@@ -1,7 +1,4 @@
 {
-    "aego/oauth2-yandex": {
-        "version": "0.2.2"
-    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {

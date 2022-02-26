@@ -26,7 +26,18 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ path('main') }}">Home</a>
                             </li>
-
+                            {% if app.user is not null %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ path('profile', {'id': app.user.id}) }}">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Login</a>
+                                </li>
+                            {% endif %}
                         </ul>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

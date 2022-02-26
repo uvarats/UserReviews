@@ -122,7 +122,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-instagram" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakeasmith/http_build_url" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-google" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/aego/oauth2-yandex" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-facebook" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/google-mailer" />
@@ -130,5 +129,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap-avatar" level="application" />
+    <orderEntry type="library" name="jquery-3.6.0" level="application" />
   </component>
 </module>
