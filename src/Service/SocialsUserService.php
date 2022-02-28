@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
+use League\Flysystem\Filesystem;
 use League\OAuth2\Client\Provider\FacebookUser;
 use League\OAuth2\Client\Provider\GoogleUser;
 
@@ -18,7 +19,8 @@ class SocialsUserService
             ->setPassword('0');
     }
     public function getGoogleUser(GoogleUser $googleUser) : ?User{
-        return $this->getUserBase()
+        $baseUser = $this->getUserBase();
+        return $baseUser
             ->setUsername($googleUser->getName())
             ->setEmail($googleUser->getEmail())
             ->setGoogleId($googleUser->getId())

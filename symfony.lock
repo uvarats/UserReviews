@@ -1,4 +1,7 @@
 {
+    "cloudinary/cloudinary_php": {
+        "version": "2.6.1"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -190,6 +193,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "shrikeh/teapot": {
+        "version": "v2.3.1"
     },
     "spatie/dropbox-api": {
         "version": "1.19.1"
@@ -570,6 +576,9 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.8.0"
+    },
+    "teapot/status-code": {
+        "version": "v1.1.2"
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"
