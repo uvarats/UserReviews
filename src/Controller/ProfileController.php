@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\CloudService;
+use Cloudinary\Cloudinary;
+use Cloudinary\Configuration\Configuration;
+use Cloudinary\Transformation\Resize;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,17 +21,16 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/{id}', name: 'profile')]
-    public function index(int $id, ManagerRegistry $doctrine): Response
+    public function index(int $id, ManagerRegistry $doctrine, CloudService $cloud): Response
     {
         $entityManager = $doctrine->getManager();
-        /**
-         * @var User $currentUser
-         */
-        $currentUser = $this->getUser();
         $user = $entityManager->getRepository(User::class)->find($id);
         if($user){
+            $cloudinary = $cloud->getCloudinary();
+            $url = $cloudinary->image('users/' . $user->getId() . '/avatar')->toUrl();
             return $this->render('profile/index.html.twig', [
                 'user' => $user,
+                'avatar_url' =>$url,
             ]);
         }
         return $this->redirectToRoute('main');
