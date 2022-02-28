@@ -125,6 +125,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-facebook" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/google-mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/dropbox-api" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/flysystem-dropbox" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/guzzle-factory" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

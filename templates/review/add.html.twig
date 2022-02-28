@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <div>
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.reviewGroup) }}
+            {{ form_row(form.tags) }}
+            {{ form_row(form.rating) }}
+            {{ form_row(form.text) }}
+            {{ form_row(form.illustrations) }}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

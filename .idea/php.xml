@@ -122,6 +122,11 @@
       <path value="$PROJECT_DIR$/vendor/league/oauth2-facebook" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/spatie/dropbox-api" />
+      <path value="$PROJECT_DIR$/vendor/spatie/flysystem-dropbox" />
+      <path value="$PROJECT_DIR$/vendor/graham-campbell/guzzle-factory" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
