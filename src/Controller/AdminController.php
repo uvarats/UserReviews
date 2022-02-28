@@ -16,8 +16,6 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'admin')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $entityManager = $doctrine->getManager();
         $users = $entityManager->getRepository(User::class)->findAll();
         return $this->render('admin/index.html.twig', [

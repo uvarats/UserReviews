@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Service\GoogleUserService;
 use App\Service\SocialsUserService;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -24,21 +25,22 @@ class GoogleAuthenticator extends OAuth2Authenticator
     private ClientRegistry $clientRegistry;
     private EntityManagerInterface $entityManager;
     private RouterInterface $router;
-    private SocialsUserService $socialsUserService;
+    private GoogleUserService $googleUserService;
 
     /**
      * @param ClientRegistry $clientRegistry
      * @param EntityManagerInterface $entityManager
      * @param RouterInterface $router
-     * @param SocialsUserService $socialsUserService
+     * @param GoogleUserService $googleUserService
      */
-    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router, SocialsUserService $socialsUserService)
+    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router, GoogleUserService $googleUserService)
     {
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
-        $this->socialsUserService = $socialsUserService;
+        $this->googleUserService = $googleUserService;
     }
+
 
     public function supports(Request $request): ?bool
     {
@@ -49,34 +51,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
     {
         $client = $this->clientRegistry->getClient('google_main');
         $accessToken = $this->fetchAccessToken($client);
-        return new SelfValidatingPassport(
-            new UserBadge(
-                $accessToken->getToken(),
-                function() use($client, $accessToken){
-                    /**
-                     * @var GoogleUser $googleUser
-                     */
-                    $googleUser = $client->fetchUserFromToken($accessToken);
-                    $existingUser = $this->entityManager
-                        ->getRepository(User::class)
-                        ->findOneBy(['google_id' => $googleUser->getId()]);
-                    if($existingUser){
-                        return $existingUser;
-                    }
-                    $user = $this->entityManager
-                        ->getRepository(User::class)
-                        ->findOneBy(['email' => $googleUser->getEmail()]);
-                    if($user){
-                        $user->setGoogleId($googleUser->getId());
-                    } else {
-                        $user = $this->socialsUserService->getGoogleUser($googleUser);
-                    }
-                    $this->entityManager->persist($user);
-                    $this->entityManager->flush();
-                    return $user;
-                }
-            )
-        );
+        return $this->googleUserService->getPassport($client, $accessToken);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response

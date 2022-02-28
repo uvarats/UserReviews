@@ -29,8 +29,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     private $register_date;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $avatar_url;
 
     #[ORM\Column(type: 'boolean')]
     private $theme;
