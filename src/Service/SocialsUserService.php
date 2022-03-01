@@ -35,18 +35,15 @@ class SocialsUserService
     }
 
     public function getGoogleUser(GoogleUser $googleUser) : ?User{
-        $baseUser = $this->getUserBase();
-        return $baseUser
+        return $this->getUserBase()
             ->setUsername($googleUser->getName())
             ->setEmail($googleUser->getEmail())
-            ->setGoogleId($googleUser->getId())
-            ->setAvatarUrl($googleUser->getAvatar());
+            ->setGoogleId($googleUser->getId());
     }
     public function getFacebookUser(FacebookUser $facebookUser) : ?User {
         return $this->getUserBase()
             ->setUsername($facebookUser->getName())
             ->setEmail($facebookUser->getEmail())
-            ->setFacebookId($facebookUser->getId())
-            ->setAvatarUrl('https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png');
+            ->setFacebookId($facebookUser->getId());
     }
 }

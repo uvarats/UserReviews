@@ -9,7 +9,9 @@ class CloudService
     private Cloudinary $cloudinary;
 
     /**
-     * @param Cloudinary $cloudinary
+     * @param string $cloudName
+     * @param string $apiKey
+     * @param string $apiSecret
      */
     public function __construct(string $cloudName, string $apiKey, string $apiSecret)
     {
@@ -28,5 +30,11 @@ class CloudService
     public function getCloudinary(): Cloudinary
     {
         return $this->cloudinary;
+    }
+    public function setDefaultAvatar(int $id){
+        $default_avatar = $this->cloudinary->image('/default/avatar')->toUrl();
+        $this->cloudinary->uploadApi()->upload($default_avatar, [
+            'public_id' => 'users/' . $id . '/avatar',
+        ]);
     }
 }

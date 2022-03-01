@@ -148,18 +148,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAvatarUrl(): ?string
-    {
-        return $this->avatar_url;
-    }
-
-    public function setAvatarUrl(string $avatar_url): self
-    {
-        $this->avatar_url = $avatar_url;
-
-        return $this;
-    }
-
     public function getTheme(): ?bool
     {
         return $this->theme;
