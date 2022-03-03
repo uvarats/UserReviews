@@ -16,6 +16,9 @@ class Tag
     #[ORM\Column(type: 'string', length: 50)]
     private $tag;
 
+    #[ORM\Column(type: 'integer')]
+    private $usesCount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Tag
     public function setTag(string $tag): self
     {
         $this->tag = $tag;
+
+        return $this;
+    }
+
+    public function getUsesCount(): ?int
+    {
+        return $this->usesCount;
+    }
+
+    public function setUsesCount(int $usesCount): self
+    {
+        $this->usesCount = $usesCount;
 
         return $this;
     }

@@ -98,6 +98,9 @@
     "jakeasmith/http_build_url": {
         "version": "1.0.1"
     },
+    "kartik-v/bootstrap-star-rating": {
+        "version": "v4.1.2"
+    },
     "knpuniversity/oauth2-client-bundle": {
         "version": "2.9",
         "recipe": {

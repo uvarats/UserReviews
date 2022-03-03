@@ -22,7 +22,7 @@ class Review
     #[ORM\Column(type: 'array', nullable: true)]
     private $tags = [];
 
-    #[ORM\Column(type: 'smallint')]
+    #[ORM\Column(type: 'float')]
     private $rating;
 
     #[ORM\Column(type: 'integer')]
@@ -37,8 +37,6 @@ class Review
     #[ORM\Column(type: 'text')]
     private $text;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $illustrations = [];
 
     #[ORM\Column(type: 'datetime')]
     private $creationTime;
@@ -84,12 +82,12 @@ class Review
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setRating(int $rating): self
+    public function setRating(float $rating): self
     {
         $this->rating = $rating;
 
@@ -144,17 +142,6 @@ class Review
         return $this;
     }
 
-    public function getIllustrations(): ?array
-    {
-        return $this->illustrations;
-    }
-
-    public function setIllustrations(?array $illustrations): self
-    {
-        $this->illustrations = $illustrations;
-
-        return $this;
-    }
 
     public function getCreationTime(): ?\DateTimeInterface
     {
@@ -167,4 +154,10 @@ class Review
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return '';
+    }
+
 }

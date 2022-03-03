@@ -128,10 +128,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/teapot/status-code" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/shrikeh/teapot" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cloudinary/cloudinary_php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap-avatar" level="application" />
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
+    <orderEntry type="library" name="star-rating" level="application" />
+    <orderEntry type="library" name="theme" level="application" />
   </component>
 </module>
