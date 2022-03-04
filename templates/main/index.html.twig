@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}UserReviews - Main!{% endblock %}
 
 {% block body %}
     {{ parent() }}
     <div class="container">
         <div class="row">
-            <div class="col m-4 bg-light text-center">
-                <h2>New reviews</h2>
+            <div class="col m-4 bg-light rounded rounded-3">
+                <div class="m-2">
+                    <div class="text-center">
+                        <h2>New reviews</h2>
+                    </div>
+                    {{ include('main/_reviews.html.twig', {reviews: lastReviews}) }}
+                </div>
             </div>
-            <div class="col m-4 bg-light text-center">
-                <h2>Top reviews</h2>
+            <div class="col m-4 bg-light rounded rounded-3">
+                <div class="m-2">
+                    <div class="text-center">
+                        <h2>Top reviews</h2>
+                    </div>
+                    {{ include('main/_reviews.html.twig', {reviews: topReviews}) }}
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col m-4 bg-light text-center">
+            <div class="col m-4 bg-light rounded rounded-3 text-center">
                 <h2>Tags cloud</h2>
             </div>
         </div>

@@ -25,9 +25,6 @@ class Review
     #[ORM\Column(type: 'float')]
     private $rating;
 
-    #[ORM\Column(type: 'integer')]
-    private $likes;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
@@ -37,9 +34,14 @@ class Review
     #[ORM\Column(type: 'text')]
     private $text;
 
-
     #[ORM\Column(type: 'datetime')]
     private $creationTime;
+
+    #[ORM\Column(type: 'array')]
+    private $likes = [];
+
+    #[ORM\Column(type: 'array')]
+    private $dislikes = [];
 
     public function getId(): ?int
     {
@@ -90,18 +92,6 @@ class Review
     public function setRating(float $rating): self
     {
         $this->rating = $rating;
-
-        return $this;
-    }
-
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(int $likes): self
-    {
-        $this->likes = $likes;
 
         return $this;
     }
@@ -158,6 +148,30 @@ class Review
     public function __toString(): string
     {
         return '';
+    }
+
+    public function getLikes(): ?array
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(array $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDislikes(): ?array
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(array $dislikes): self
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
     }
 
 }

@@ -31,7 +31,7 @@ class ReviewController extends AbstractController
              * @var Review $review
              */
             $review = $form->getData();
-            $review->setLikes(0)
+            $review->setLikes([])
                 ->setCreationTime(new \DateTime())
                 ->setUserId($user->getId())
                 ->setSubjectId(0);

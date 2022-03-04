@@ -22,6 +22,7 @@ class Comment
     #[ORM\Column(type: 'text')]
     private $text;
 
+
     public function getId(): ?int
     {
         return $this->id;

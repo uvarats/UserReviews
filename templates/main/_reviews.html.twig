@@ -1,0 +1,12 @@
+<div class="list-group">
+    {% for review in reviews %}
+        <a href="{{ path('review', {id: review.id}) }}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ review.name }}</h5>
+                <small class="text-muted">{{ review.creationTime|date('Y-m-d H:i:s') }}</small>
+            </div>
+            <p class="mb-1">{{ render(path('get_first_sentence', {id: review.id})) }}</p>
+            <small class="text-muted">{{ render(path('get_username', {id: review.userId})) }}</small>
+        </a>
+    {% endfor %}
+</div>
