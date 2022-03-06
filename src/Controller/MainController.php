@@ -41,7 +41,8 @@ class MainController extends AbstractController
         ]);
     }
     #[Route('/get/sentence/{id}', name: 'get_first_sentence')]
-    public function getFirstSentence(int $id){
+    public function getFirstSentence(int $id): Response
+    {
         $review = $this->entityManager
             ->getRepository(Review::class)
             ->findOneBy(['id' => $id]);

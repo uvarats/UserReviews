@@ -5,17 +5,20 @@ namespace App\Service;
 use App\Entity\Review;
 use Doctrine\ORM\EntityManagerInterface;
 use JetBrains\PhpStorm\Pure;
+use Psr\Log\LoggerInterface;
 
 class ReviewsService
 {
     private EntityManagerInterface $entityManager;
+    private LoggerInterface $logger;
 
     /**
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, LoggerInterface $logger)
     {
         $this->entityManager = $entityManager;
+        $this->logger = $logger;
     }
 
     public function getNewReviews(): array
@@ -34,12 +37,16 @@ class ReviewsService
     #[Pure]
     private function compareByLikes(Review $reviewA, Review $reviewB): int
     {
-        $likesA = $reviewA->getLikes();
-        $likesB = $reviewB->getLikes();
-        if(count($likesA) === count($likesB)){
+        $likesA = count($reviewA->getLikes());
+        $likesB = count($reviewB->getLikes());
+        $dislikesA = count($reviewA->getDislikes());
+        $dislikesB = count($reviewB->getDislikes());
+        $sumA = $likesA - $dislikesA;
+        $sumB = $likesB - $dislikesB;
+        if($sumA === $sumB){
             return 0;
         }
-        return count($likesA) < count($likesB) ? -1 : 1;
+        return $sumA > $sumB ? -1 : 1;
     }
     private function getAllReviews(): array
     {

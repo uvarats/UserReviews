@@ -15,8 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReviewController extends AbstractController
 {
+    private EntityManagerInterface $entityManager;
+
+    /**
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/review/add', name: 'review_add')]
-    public function addReview(Request $request, EntityManagerInterface $entityManager, LoggerInterface $logger){
+    public function addReview(Request $request, LoggerInterface $logger){
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $review = new Review();
         $form = $this->createForm(ReviewAddingType::class, $review);
@@ -35,8 +45,8 @@ class ReviewController extends AbstractController
                 ->setCreationTime(new \DateTime())
                 ->setUserId($user->getId())
                 ->setSubjectId(0);
-            $entityManager->persist($review);
-            $entityManager->flush();
+            $this->entityManager->persist($review);
+            $this->entityManager->flush();
         }
         return $this->renderForm('review/add.html.twig', [
                 'form' => $form,
@@ -46,8 +56,15 @@ class ReviewController extends AbstractController
     #[Route('/review/{id}', name: 'review')]
     public function index(int $id): Response
     {
-        return $this->render('review/index.html.twig', [
-            'controller_name' => 'ReviewController',
-        ]);
+        $review = $this->entityManager
+            ->getRepository(Review::class)
+            ->findOneBy(['id' => $id]);
+        if($review){
+            return $this->render('review/index.html.twig', [
+                'review' => $review,
+            ]);
+        } else {
+            return $this->redirectToRoute('main');
+        }
     }
 }
