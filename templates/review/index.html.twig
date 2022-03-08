@@ -22,9 +22,9 @@
         </div>
         <div class="row m-3 bg-light">
             <div class="col-12">
-                {{ render(path('get_avatar', {id: review.userId})) }}
-                <a style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: review.userId }) }}">
-                    {{ render(path('get_username', {id: review.userId})) }}
+                {{ render(path('get_avatar', {id: review.author.id })) }}
+                <a style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: review.author.id }) }}">
+                    {{ review.author.userIdentifier }}
                 </a>
             </div>
             <div class="col-1"></div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="row" id="review_footer">
                     <div id="post_date">
-                        <p>{{ review.creationTime|date('Y-m-d H:i') }}</p>
+                        <p class="text-muted">{{ review.creationTime|date('Y-m-d H:i') }}</p>
                     </div>
                     <div class="col-auto" id="likebtn">
                         {% if app.user is not null %}

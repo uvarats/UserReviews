@@ -32,7 +32,7 @@ class LikesController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         /** @var User $user */
         $user = $this->getUser();
-        $review = $this->entityManager->getRepository(Review::class)->findOneBy(['id' => $id]);
+        $review = $this->entityManager->getRepository(Review::class)->find($id);
         if($review){
             $this->likeService->like($review->getId(), $user->getId());
             return new JsonResponse([
@@ -40,10 +40,9 @@ class LikesController extends AbstractController
                 'user_id' => $user->getId(),
                 'new_count' => count($review->getLikes()),
             ]);
-        } else {
-            return new JsonResponse([
-                'error' => 'Unknown review :(',
-            ]);
         }
+        return new JsonResponse([
+            'error' => 'Unknown review :(',
+        ]);
     }
 }

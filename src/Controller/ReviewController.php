@@ -36,15 +36,13 @@ class ReviewController extends AbstractController
              * @var User $user
              */
             $user = $this->getUser();
-            $a = 10;
             /**
              * @var Review $review
              */
             $review = $form->getData();
             $review->setLikes([])
                 ->setCreationTime(new \DateTime())
-                ->setUserId($user->getId())
-                ->setSubjectId(0);
+                ->setAuthor($user);
             $this->entityManager->persist($review);
             $this->entityManager->flush();
             return $this->redirectToRoute('main');

@@ -7,7 +7,7 @@
             </div>
             <p class="mb-1">{{ render(path('get_first_sentence', {id: review.id})) }}</p>
             <div class="d-flex justify-content-between">
-                <small class="text-muted">{{ render(path('get_username', {id: review.userId})) }}</small>
+                <small class="text-muted">{{ review.author.userIdentifier }}</small>
                 <div>
                     <small>
                         <i class="fa-solid fa-heart"></i>
