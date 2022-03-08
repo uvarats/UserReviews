@@ -1,0 +1,16 @@
+{% if app.user %}
+    {% if app.user.id == review.userId or "ROLE_ADMIN" in app.user.roles %}
+        <div class="row col-auto" id="author_buttons">
+            <div class="col-auto" id="editbtn">
+                <button class="btn btn-outline-primary" id="edit">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+            <div class="col-auto" id="deletebtn">
+                <button class="btn btn-outline-danger" id="delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

@@ -39,14 +39,10 @@ class ReviewsService
     {
         $likesA = count($reviewA->getLikes());
         $likesB = count($reviewB->getLikes());
-        $dislikesA = count($reviewA->getDislikes());
-        $dislikesB = count($reviewB->getDislikes());
-        $sumA = $likesA - $dislikesA;
-        $sumB = $likesB - $dislikesB;
-        if($sumA === $sumB){
+        if($likesA === $likesB){
             return 0;
         }
-        return $sumA > $sumB ? -1 : 1;
+        return $likesA > $likesB ? -1 : 1;
     }
     private function getAllReviews(): array
     {

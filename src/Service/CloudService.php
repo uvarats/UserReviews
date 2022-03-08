@@ -37,4 +37,11 @@ class CloudService
             'public_id' => 'users/' . $id . '/avatar',
         ]);
     }
+    public function getUserAvatar(int $userId): \Psr\Http\Message\UriInterface|string
+    {
+        return $this
+            ->cloudinary
+            ->image('users/' . $userId . '/avatar')
+            ->toUrl();
+    }
 }

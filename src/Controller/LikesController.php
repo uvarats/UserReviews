@@ -26,30 +26,19 @@ class LikesController extends AbstractController
         $this->likeService = $likeService;
     }
 
-    #[Route('/likes/reset', name: 'reset_likes')]
-    public function reset(): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $reviews = $this->entityManager->getRepository(Review::class)->findAll();
-        foreach ($reviews as $review){
-            $review->setLikes([])->setDislikes([]);
-        }
-        $this->entityManager->flush();
-        return new Response();
-    }
-    #[Route('/review/{state}/{id}', name: 'review_like', requirements: ['state' => '\b(?:dis)?like\b'])]
-    public function like(string $state, int $id): Response
+    #[Route('/review/like/{id}', name: 'review_like', methods: ['POST'])]
+    public function like(int $id): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         /** @var User $user */
         $user = $this->getUser();
         $review = $this->entityManager->getRepository(Review::class)->findOneBy(['id' => $id]);
         if($review){
-            $this->likeService->setState($review->getId(), $user->getId(), $state);
+            $this->likeService->like($review->getId(), $user->getId());
             return new JsonResponse([
                 'review_id' => $review->getId(),
                 'user_id' => $user->getId(),
-                'state' => $state,
+                'new_count' => count($review->getLikes()),
             ]);
         } else {
             return new JsonResponse([

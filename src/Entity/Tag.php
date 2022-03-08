@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
@@ -16,8 +18,13 @@ class Tag
     #[ORM\Column(type: 'string', length: 50)]
     private $tag;
 
-    #[ORM\Column(type: 'integer')]
-    private $usesCount;
+    #[ORM\ManyToMany(targetEntity: Review::class, mappedBy: 'tags')]
+    private $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,15 +43,31 @@ class Tag
         return $this;
     }
 
-    public function getUsesCount(): ?int
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
     {
-        return $this->usesCount;
+        return $this->reviews;
     }
 
-    public function setUsesCount(int $usesCount): self
+    public function addReview(Review $review): self
     {
-        $this->usesCount = $usesCount;
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->addTag($this);
+        }
 
         return $this;
     }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            $review->removeTag($this);
+        }
+
+        return $this;
+    }
+
 }

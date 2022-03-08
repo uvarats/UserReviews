@@ -1,12 +1,90 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Review: {{ review.name }}{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/review.css') }}">
+{% endblock %}
 {% block body %}
     {{ parent() }}
     <div class="container">
-        <div class="row m-5">
-
+        <div class="row m-3 bg-light">
+            <div class="m-3">
+                <div id="name">
+                    <h3>{{ review.name }}</h3>
+                </div>
+                <div id="tags">
+                    {% for tag in review.tags %}
+                        <span class="badge rounded-pill bg-secondary">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row m-3 bg-light">
+            <div class="col-12">
+                {{ render(path('get_avatar', {id: review.userId})) }}
+                <a style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: review.userId }) }}">
+                    {{ render(path('get_username', {id: review.userId})) }}
+                </a>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-11">
+                <div id="rating">
+                    <h6>User rating:</h6>
+                    <p>{{ review.rating }}★</p>
+                </div>
+                <div id="text">
+                    <p>{{ review.text|markdown_to_html }}</p>
+                </div>
+                <div class="row" id="review_footer">
+                    <div id="post_date">
+                        <p>{{ review.creationTime|date('Y-m-d H:i') }}</p>
+                    </div>
+                    <div class="col-auto" id="likebtn">
+                        {% if app.user is not null %}
+                            <button class="btn btn-outline-primary" onclick="likeReview()">
+                                <a id="likes_count">{{ review.likes|length }}</a>
+                                {% if app.user.id not in review.likes %}
+                                    <i id="heart" class="fa-regular fa-heart"></i>
+                                {% else %}
+                                    <i id="heart" class="fa-solid fa-heart"></i>
+                                {% endif %}
+                            </button>
+                        {% else %}
+                            <a>
+                                {{ review.likes|length }}
+                                <i id="heart" class="fa-regular fa-heart"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    {{ include('review/_author_buttons.html.twig', {review: review}) }}
+                </div>
+            </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function likeReview(){
+            let likes = $('#likes_count');
+            $.ajax({
+                url: '{{ path('review_like', {id: review.id}) }}',
+                method: 'POST',
+                success: function (data, status, xhttp) {
+                    likes.text(data.new_count);
+                }
+            });
+            let element = $("#heart")[0];
+            if(element.classList.contains('fa-regular')){
+                likes.text(parseInt(likes.text()) + 1);
+                element.classList.remove('fa-regular');
+                element.classList.add('fa-solid');
+            } else if(element.classList.contains('fa-solid')){
+                likes.text(parseInt(likes.text()) - 1);
+                element.classList.remove('fa-solid');
+                element.classList.add('fa-regular');
+            }
+        }
+    </script>
 {% endblock %}

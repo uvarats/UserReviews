@@ -47,24 +47,28 @@ class ReviewController extends AbstractController
                 ->setSubjectId(0);
             $this->entityManager->persist($review);
             $this->entityManager->flush();
+            return $this->redirectToRoute('main');
         }
         return $this->renderForm('review/add.html.twig', [
                 'form' => $form,
             ]
         );
     }
+    #[Route('/review/delete/{id}', name: 'review_delete')]
+    public function delete(int $id){
+
+    }
     #[Route('/review/{id}', name: 'review')]
     public function index(int $id): Response
     {
         $review = $this->entityManager
             ->getRepository(Review::class)
-            ->findOneBy(['id' => $id]);
+            ->find($id);
         if($review){
             return $this->render('review/index.html.twig', [
                 'review' => $review,
             ]);
-        } else {
-            return $this->redirectToRoute('main');
         }
+        return $this->redirectToRoute('main');
     }
 }

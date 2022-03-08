@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReviewRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
@@ -12,15 +14,6 @@ class Review
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
-    #[ORM\Column(type: 'integer')]
-    private $subjectId;
-
-    #[ORM\Column(type: 'integer')]
-    private $userId;
-
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $tags = [];
 
     #[ORM\Column(type: 'float')]
     private $rating;
@@ -40,48 +33,25 @@ class Review
     #[ORM\Column(type: 'array')]
     private $likes = [];
 
-    #[ORM\Column(type: 'array')]
-    private $dislikes = [];
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $author;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews')]
+    private $tags;
+
+    #[ORM\OneToMany(mappedBy: 'Review', targetEntity: Comment::class)]
+    private $comments;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getSubjectId(): ?int
-    {
-        return $this->subjectId;
-    }
-
-    public function setSubjectId(int $subjectId): self
-    {
-        $this->subjectId = $subjectId;
-
-        return $this;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    public function setUserId(int $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    public function getTags(): ?array
-    {
-        return $this->tags;
-    }
-
-    public function setTags(?array $tags): self
-    {
-        $this->tags = $tags;
-
-        return $this;
     }
 
     public function getRating(): ?float
@@ -162,14 +132,68 @@ class Review
         return $this;
     }
 
-    public function getDislikes(): ?array
+    public function getAuthor(): ?User
     {
-        return $this->dislikes;
+        return $this->author;
     }
 
-    public function setDislikes(array $dislikes): self
+    public function setAuthor(?User $author): self
     {
-        $this->dislikes = $dislikes;
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setReview($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getReview() === $this) {
+                $comment->setReview(null);
+            }
+        }
 
         return $this;
     }

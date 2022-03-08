@@ -13,43 +13,19 @@ class Comment
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $reviewId;
-
-    #[ORM\Column(type: 'integer')]
-    private $authorId;
-
     #[ORM\Column(type: 'text')]
     private $text;
+
+    #[ORM\ManyToOne(targetEntity: Review::class, inversedBy: 'comments')]
+    private $Review;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
+    private $author;
 
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getReviewId(): ?int
-    {
-        return $this->reviewId;
-    }
-
-    public function setReviewId(int $reviewId): self
-    {
-        $this->reviewId = $reviewId;
-
-        return $this;
-    }
-
-    public function getAuthorId(): ?int
-    {
-        return $this->authorId;
-    }
-
-    public function setAuthorId(int $authorId): self
-    {
-        $this->authorId = $authorId;
-
-        return $this;
     }
 
     public function getText(): ?string
@@ -60,6 +36,30 @@ class Comment
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getReview(): ?Review
+    {
+        return $this->Review;
+    }
+
+    public function setReview(?Review $Review): self
+    {
+        $this->Review = $Review;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

@@ -32,29 +32,4 @@ class MainController extends AbstractController
             'topReviews' => $reviewsService->getTopReviews(),
         ]);
     }
-    #[Route('/get/username/{id}', name: 'get_username')]
-    public function getAuthor(int $id): Response
-    {
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['id' => $id]);
-        return $this->render('main/_author.html.twig', [
-            'user' => $user,
-        ]);
-    }
-    #[Route('/get/sentence/{id}', name: 'get_first_sentence')]
-    public function getFirstSentence(int $id): Response
-    {
-        $review = $this->entityManager
-            ->getRepository(Review::class)
-            ->findOneBy(['id' => $id]);
-        $text = $review->getText();
-        $substr_index = strpos($text, '. ');
-        if($substr_index){
-            $sentence = substr($text, 0, $substr_index + 1);
-        } else {
-            $sentence = substr($text, 0, 30);
-        }
-        return $this->render('main/_sentence.html.twig', [
-            'sentence' => $sentence,
-        ]);
-    }
 }

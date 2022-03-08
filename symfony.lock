@@ -2,6 +2,9 @@
     "cloudinary/cloudinary_php": {
         "version": "2.6.1"
     },
+    "dflydev/dot-access-data": {
+        "version": "v3.0.1"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -116,6 +119,12 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "league/commonmark": {
+        "version": "2.2.3"
+    },
+    "league/config": {
+        "version": "v1.1.1"
+    },
     "league/oauth2-client": {
         "version": "2.6.1"
     },
@@ -130,6 +139,12 @@
     },
     "monolog/monolog": {
         "version": "2.3.5"
+    },
+    "nette/schema": {
+        "version": "v1.2.2"
+    },
+    "nette/utils": {
+        "version": "v3.2.7"
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
@@ -569,6 +584,9 @@
         "version": "v1.1.2"
     },
     "twig/extra-bundle": {
+        "version": "v3.3.8"
+    },
+    "twig/markdown-extra": {
         "version": "v3.3.8"
     },
     "twig/twig": {

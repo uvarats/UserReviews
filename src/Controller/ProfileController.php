@@ -26,11 +26,9 @@ class ProfileController extends AbstractController
         $entityManager = $doctrine->getManager();
         $user = $entityManager->getRepository(User::class)->find($id);
         if($user){
-            $cloudinary = $cloud->getCloudinary();
-            $url = $cloudinary->image('users/' . $user->getId() . '/avatar')->toUrl();
             return $this->render('profile/index.html.twig', [
                 'user' => $user,
-                'avatar_url' =>$url,
+                'avatar_url' => $cloud->getUserAvatar($user->getId()),
             ]);
         }
         return $this->redirectToRoute('main');
