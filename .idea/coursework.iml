@@ -143,6 +143,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezimuel/ringphp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezimuel/guzzlestreams" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofsymfony/elastica-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/apache-pack" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
