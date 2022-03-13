@@ -21,14 +21,22 @@
             </div>
         </div>
         <div class="row m-3 bg-light">
-            <div class="col-12">
+            <div class="col-auto border-0">
                 {{ render(path('get_avatar', {id: review.author.id })) }}
-                <a style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: review.author.id }) }}">
-                    {{ review.author.userIdentifier }}
-                </a>
             </div>
-            <div class="col-1"></div>
-            <div class="col-11">
+            <div class="col mt-4">
+                <div class="row">
+                    <div class="col">
+                        <a style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: review.author.id }) }}">
+                            {{ review.author.userIdentifier }}
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="float-end">
+                            {{ include('review/_author_buttons.html.twig', {review: review}) }}
+                        </div>
+                    </div>
+                </div>
                 <div id="rating">
                     <h6>User rating:</h6>
                     <p>{{ review.rating }}★</p>
@@ -57,7 +65,6 @@
                             </a>
                         {% endif %}
                     </div>
-                    {{ include('review/_author_buttons.html.twig', {review: review}) }}
                 </div>
             </div>
         </div>

@@ -30,6 +30,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{ path('profile', {'id': app.user.id}) }}">Profile</a>
                                 </li>
+                                {% if "ROLE_ADMIN" in app.user.roles %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ path('admin') }}">Admin</a>
+                                    </li>
+                                {% endif %}
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
                                 </li>
@@ -39,8 +44,8 @@
                                 </li>
                             {% endif %}
                         </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form action="{{ path('app_search') }}" method="post" class="d-flex">
+                            <input class="form-control me-2" name="_search" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>

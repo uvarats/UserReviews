@@ -10,4 +10,9 @@ fos_elastica:
                 provider: ~
                 finder: ~
             properties:
+                name: ~
                 text: ~
+                comments:
+                    type: nested
+                    properties:
+                        text: ~

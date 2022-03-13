@@ -12,7 +12,7 @@
     <div class="row m-sm-4">
         <div class="bg-light rounded-3">
             <div class="row m-3">
-                <img class="avatar avatar-128 bg-light rounded-circle text-white p-2" src="{{ avatar_url }}"/>
+                <img class="avatar avatar-128 bg-light rounded-circle text-white p-2 border-0" src="{{ avatar_url }}"/>
                 <div class="col">
                     <h1>{{ user.userIdentifier }}</h1>
                     {% if app.user is not null %}
@@ -22,6 +22,40 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
+        <div class="mt-4 bg-light">
+            <h3>Reviews</h3>
+            <button title="Create review" class="btn btn-outline-primary">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Review name</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Likes</th>
+                        <th scope="col">Comments</th>
+                        {% if app.user.id == user.id %}
+                            <th scope="col">Actions</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in user.reviews %}
+                        <tr>
+                            <th scope="row">{{ review.name }}</th>
+                            <td>{{ review.reviewGroup }}</td>
+                            <td>{{ review.rating }}</td>
+                            <td>{{ review.likes|length }}</td>
+                            <td>{{ review.comments|length }}</td>
+                            {% if app.user.id == user.id %}
+                                <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
