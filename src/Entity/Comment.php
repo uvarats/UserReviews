@@ -22,6 +22,9 @@ class Comment
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     private $author;
 
+    #[ORM\Column(type: 'datetime')]
+    private $postdate;
+
 
     public function getId(): ?int
     {
@@ -60,6 +63,18 @@ class Comment
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getPostdate(): ?\DateTimeInterface
+    {
+        return $this->postdate;
+    }
+
+    public function setPostdate(\DateTimeInterface $postdate): self
+    {
+        $this->postdate = $postdate;
 
         return $this;
     }

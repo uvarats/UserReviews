@@ -36,7 +36,7 @@
                 <div id="text">
                     <p>{{ review.text|markdown_to_html }}</p>
                 </div>
-                <div class="row" id="review_footer">
+                <div class="row mb-3" id="review_footer">
                     <div id="post_date">
                         <p class="text-muted">{{ review.creationTime|date('Y-m-d H:i') }}</p>
                     </div>
@@ -61,11 +61,87 @@
                 </div>
             </div>
         </div>
+        <div class="row m-3 bg-light">
+            {% if app.user is not null %}
+                <div class="m-2" id="comment_field">
+                    {{ form_start(comment) }}
+                        {{ form_errors(comment) }}
+                        <h3>Comment</h3>
+                        {{ form_widget(comment.text) }}
+                        <input type="submit" class="btn btn-primary mt-3" value="Comment">
+                    {{ form_end(comment) }}
+                </div>
+                <div id="comments_section">
+                    {% for comment in review.comments %}
+                        <div class="row border-top border-bottom">
+                            <div class="col-auto border-0">
+                                {{ render(path('get_avatar', {id: comment.author.id })) }}
+                            </div>
+                            <div class="col mt-4 mb-3 me-3">
+                                <a class="fw-bold" style="color: inherit; text-decoration: inherit;" href="{{ path('profile', {id: comment.author.id}) }}">
+                                    {{ comment.author.userIdentifier }}
+                                </a>
+                                <div class="col">
+                                    {{ comment.text }}
+                                </div>
+                                <div class="col">
+                                    <p class="text-muted">
+                                        {{ comment.postdate|date('Y-m-d H:i') }}
+                                    </p>
+                                    {% if app.user.id == comment.author.id %}
+                                        <button class="btn btn-outline-danger remove_comment" value="{{ comment.id }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Review remove confirmation.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to remove this review? Changes cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                    <form action="{{ path('review_remove', {'id': review.id}) }}" method="post">
+                        <button type="submit" class="btn btn-outline-danger">Yes, I sure!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/review.js') }}"></script>
     <script>
+        $(document).ready(function (){
+            $('.remove_comment').click(function () {
+                let commentId = $(this)[0].attributes['value'].value;
+                let parentDiv = $(this).parent()
+                    .parent()
+                    .parent();
+                parentDiv[0].innerHTML = "<p class='text-center mt-3'>Comment has been removed.</p";
+                jQuery.ajax({
+                    url: '/comment/' + commentId + "/remove",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            });
+        });
         function likeReview(){
             let likes = $('#likes_count');
             $.ajax({

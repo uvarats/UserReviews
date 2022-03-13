@@ -2,11 +2,13 @@
     {% if app.user.id == review.author.id or "ROLE_ADMIN" in app.user.roles %}
         <div class="row col-auto" id="author_buttons">
             <div class="col-auto" id="editbtn">
-                <button class="btn btn-outline-primary" id="edit">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
+                <form action="{{ path('review_edit', {'id': review.id}) }}">
+                    <button type="submit" class="btn btn-outline-primary" id="edit">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                </form>
             </div>
-            <div class="col-auto" id="deletebtn">
+            <div class="col-auto" id="deletebtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <button class="btn btn-outline-danger" id="delete">
                     <i class="fa-solid fa-trash"></i>
                 </button>

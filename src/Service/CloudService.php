@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Cloudinary\Cloudinary;
+use Psr\Http\Message\UriInterface;
 
 class CloudService
 {
@@ -24,9 +25,6 @@ class CloudService
                 'secure' => true]]);
     }
 
-    /**
-     * @return Cloudinary
-     */
     public function getCloudinary(): Cloudinary
     {
         return $this->cloudinary;
@@ -37,7 +35,7 @@ class CloudService
             'public_id' => 'users/' . $id . '/avatar',
         ]);
     }
-    public function getUserAvatar(int $userId): \Psr\Http\Message\UriInterface|string
+    public function getUserAvatar(int $userId): UriInterface|string
     {
         return $this
             ->cloudinary

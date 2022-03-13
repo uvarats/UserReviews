@@ -22,14 +22,6 @@ class GetController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/get/username/{id}', name: 'get_username')]
-    public function getAuthor(int $id): Response
-    {
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['id' => $id]);
-        return $this->render('get/_author.html.twig', [
-            'user' => $user,
-        ]);
-    }
     #[Route('/get/sentence/{id}', name: 'get_first_sentence')]
     public function getFirstSentence(int $id): Response
     {
@@ -48,7 +40,8 @@ class GetController extends AbstractController
         ]);
     }
     #[Route('get/avatar/{id}', name: 'get_avatar')]
-    public function getAvatar(int $id, CloudService $cloud){
+    public function getAvatar(int $id, CloudService $cloud): Response
+    {
         return $this->render('get/_avatar.html.twig', [
             'avatar_url' => $cloud->getUserAvatar($id),
         ]);
