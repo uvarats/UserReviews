@@ -39,7 +39,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/connect, requires_channel: https }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
