@@ -15,7 +15,7 @@
                 <img class="avatar avatar-128 bg-light rounded-circle text-white p-2 border-0" src="{{ user.avatarUrl }}"/>
                 <div class="col">
                     <h1>{{ user.userIdentifier }}</h1>
-                    {% if app.user is not null %}
+                    {% if app.user %}
                         {% if app.user.id == user.id %}
                             <button type="button" class="btn btn-outline-primary">Edit profile</button>
                         {% endif %}
@@ -25,9 +25,13 @@
         </div>
         <div class="mt-4 bg-light">
             <h3>Reviews</h3>
-            <button title="Create review" class="btn btn-outline-primary">
-                <i class="fa-solid fa-plus"></i>
-            </button>
+            {% if app.user %}
+                {% if app.user.id == user.id or "ROLE_ADMIN" in app.user.roles %}
+                    <button title="Create review" class="btn btn-outline-primary">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                {% endif %}
+            {% endif %}
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -36,7 +40,7 @@
                         <th scope="col">Rating</th>
                         <th scope="col">Likes</th>
                         <th scope="col">Comments</th>
-                        {% if app.user.id == user.id %}
+                        {% if app.user and app.user.id == user.id %}
                             <th scope="col">Actions</th>
                         {% endif %}
                     </tr>
@@ -49,9 +53,7 @@
                             <td>{{ review.rating }}</td>
                             <td>{{ review.likes|length }}</td>
                             <td>{{ review.comments|length }}</td>
-                            {% if app.user.id == user.id %}
-                                <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
-                            {% endif %}
+                            <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
