@@ -45,6 +45,26 @@ class ReviewRepository extends ServiceEntityRepository
         }
     }
 
+    public function getNewReviews(int $count){
+        $em = $this->getEntityManager();
+        return $em->createQuery(
+            "SELECT r
+             FROM App\Entity\Review r
+             ORDER BY r.creationTime DESC
+             ")
+            ->setMaxResults($count)
+            ->getResult();
+    }
+    public function getTopReviews(int $count){
+        $em = $this->getEntityManager();
+        return $em->createQuery(
+            "SELECT r
+            FROM App\Entity\Review r
+            ORDER BY r.likes DESC
+            ")
+            ->setMaxResults($count)
+            ->getResult();
+    }
     // /**
     //  * @return Review[] Returns an array of Review objects
     //  */

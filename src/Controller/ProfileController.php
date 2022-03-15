@@ -28,7 +28,6 @@ class ProfileController extends AbstractController
         if($user){
             return $this->render('profile/index.html.twig', [
                 'user' => $user,
-                'avatar_url' => $cloud->getUserAvatar($user->getId()),
             ]);
         }
         return $this->redirectToRoute('main');

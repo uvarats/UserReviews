@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Cloudinary\Api\Exception\ApiError;
 use Cloudinary\Cloudinary;
 use Psr\Http\Message\UriInterface;
 
@@ -29,17 +30,12 @@ class CloudService
     {
         return $this->cloudinary;
     }
-    public function setDefaultAvatar(int $id){
-        $default_avatar = $this->cloudinary->image('/default/avatar')->toUrl();
-        $this->cloudinary->uploadApi()->upload($default_avatar, [
-            'public_id' => 'users/' . $id . '/avatar',
-        ]);
-    }
-    public function getUserAvatar(int $userId): UriInterface|string
+
+    public function getDefaultAvatar(): UriInterface|string
     {
         return $this
             ->cloudinary
-            ->image('users/' . $userId . '/avatar')
+            ->image('/default/avatar')
             ->toUrl();
     }
 }

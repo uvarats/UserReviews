@@ -30,32 +30,30 @@ class GoogleUserService
     }
 
 
-    public function getPassport(OAuth2ClientInterface $client, AccessToken $accessToken){
+    public function getPassport(OAuth2ClientInterface $client, AccessToken $accessToken): SelfValidatingPassport
+    {
         return new SelfValidatingPassport(
             new UserBadge(
                 $accessToken->getToken(),
                 function() use($client, $accessToken){
-                    /**
-                     * @var GoogleUser $googleUser
-                     */
+                    $userRepository = $this->entityManager->getRepository(User::class);
+                    /** @var GoogleUser $googleUser */
                     $googleUser = $client->fetchUserFromToken($accessToken);
-                    $existingUser = $this->entityManager
-                        ->getRepository(User::class)
+                    $existingUser = $userRepository
                         ->findOneBy(['google_id' => $googleUser->getId()]);
                     if($existingUser){
                         return $existingUser;
                     }
-                    $user = $this->entityManager
-                        ->getRepository(User::class)
+                    $user = $userRepository
                         ->findOneBy(['email' => $googleUser->getEmail()]);
                     if($user){
                         $user->setGoogleId($googleUser->getId());
                     } else {
                         $user = $this->socialsUserService->getGoogleUser($googleUser);
                     }
+                    $user->setAvatarUrl($this->cloudService->getDefaultAvatar());
                     $this->entityManager->persist($user);
                     $this->entityManager->flush();
-                    $this->cloudService->setDefaultAvatar($user->getId());
                     return $user;
                 }
             )

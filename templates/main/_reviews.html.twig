@@ -5,7 +5,7 @@
                 <h5 class="mb-1">{{ review.name }}</h5>
                 <small class="text-muted">{{ review.creationTime|date('Y-m-d H:i') }}</small>
             </div>
-            <p class="mb-1">{{ render(path('get_first_sentence', {id: review.id})) }}</p>
+{#            <p class="mb-1">{{ render(path('get_first_sentence', {id: review.id})) }}</p>#}
             <div class="d-flex justify-content-between">
                 <small class="text-muted">{{ review.author.userIdentifier }}</small>
                 <div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Review;
 use App\Entity\User;
+use App\Service\CloudService;
 use App\Service\ReviewsService;
 use ContainerIjylEKr\getFosElastica_Index_ReviewService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,11 +29,12 @@ class MainController extends AbstractController
 
     #[Route('/')]
     #[Route('/main', name: 'main')]
-    public function index(ReviewsService $reviewsService): Response
+    public function index(): Response
     {
+        $repository = $this->entityManager->getRepository(Review::class);
         return $this->render('main/index.html.twig', [
-            'lastReviews' => $reviewsService->getNewReviews(),
-            'topReviews' => $reviewsService->getTopReviews(),
+            'lastReviews' => $repository->getNewReviews(5),
+            'topReviews' => $repository->getTopReviews(5),
         ]);
     }
 }

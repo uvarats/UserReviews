@@ -32,27 +32,24 @@ class FacebookUserService
 
     public function getPassport(OAuth2ClientInterface $client, AccessToken $accessToken) : SelfValidatingPassport{
         return new SelfValidatingPassport(new UserBadge($accessToken->getToken(), function() use($client, $accessToken){
-            /**
-             * @var FacebookUser $facebookUser
-             */
+            $userRepository = $this->entityManager->getRepository(User::class);
+            /** @var FacebookUser $facebookUser */
             $facebookUser = $client->fetchUserFromToken($accessToken);
-            $existingUser = $this->entityManager
-                ->getRepository(User::class)
+            $existingUser = $userRepository
                 ->findOneBy(['facebookId' => $facebookUser->getId()]);
             if($existingUser){
                 return $existingUser;
             }
-            $user = $this->entityManager
-                ->getRepository(User::class)
+            $user = $userRepository
                 ->findOneBy(['email' => $facebookUser->getEmail()]);
             if($user){
                 $user->setFacebookId($facebookUser->getId());
             } else {
                 $user = $this->socialsUserService->getFacebookUser($facebookUser);
             }
+            $user->setAvatarUrl($this->cloudService->getDefaultAvatar());
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-            $this->cloudService->setDefaultAvatar($user->getId());
             return $user;
         }));
     }
