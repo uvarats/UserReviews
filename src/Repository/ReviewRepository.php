@@ -65,6 +65,18 @@ class ReviewRepository extends ServiceEntityRepository
             ->setMaxResults($count)
             ->getResult();
     }
+    public function getReviewsByTag(string $tag){
+        $em = $this->getEntityManager();
+        /** @var Review[] $reviews */
+        $reviews = $em->createQuery(
+            "SELECT r, t
+            FROM App\Entity\Review r
+            JOIN r.tags t"
+        )->getResult();
+        return array_filter($reviews, function($value, $key) use($tag){
+            return in_array($tag, $value->getTags()->toArray());
+        }, ARRAY_FILTER_USE_BOTH);
+    }
     // /**
     //  * @return Review[] Returns an array of Review objects
     //  */

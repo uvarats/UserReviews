@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tag!{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="row bg-light m-5 rounded-3">
+        <div class="col m-3">
+            {% if results|length != 0 %}
+                <div class="text-center">
+                    <h2>Tag: {{ tag }}</h2>
+                </div>
+                {{ include('main/_reviews.html.twig', {reviews: results}) }}
+            {% else %}
+                <h3>Nothing was found.</h3>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

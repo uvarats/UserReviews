@@ -44,6 +44,26 @@ class TagRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function getTagsByReviewsCount(){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT t, r
+            FROM App\Entity\Tag t
+            JOIN t.reviews r
+            "
+        );
+        /** @var Tag[] $result */
+        $result = $query->getResult();
+
+        usort($result, function(Tag $t1, Tag $t2) {
+            $reviewsCount1 = $t1->getReviews()->count();
+            $reviewsCount2 = $t2->getReviews()->count();
+            return $reviewsCount1 === $reviewsCount2 ? 0 :
+                ($reviewsCount1 > $reviewsCount2 ? -1 : 1);
+
+        });
+        return $result;
+    }
 
     // /**
     //  * @return Tag[] Returns an array of Tag objects

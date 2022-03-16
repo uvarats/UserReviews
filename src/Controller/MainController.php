@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Review;
+use App\Entity\Tag;
 use App\Entity\User;
 use App\Service\CloudService;
 use App\Service\ReviewsService;
@@ -31,10 +32,12 @@ class MainController extends AbstractController
     #[Route('/main', name: 'main')]
     public function index(): Response
     {
-        $repository = $this->entityManager->getRepository(Review::class);
+        $reviewRepository = $this->entityManager->getRepository(Review::class);
+        $tagRepository = $this->entityManager->getRepository(Tag::class);
         return $this->render('main/index.html.twig', [
-            'lastReviews' => $repository->getNewReviews(5),
-            'topReviews' => $repository->getTopReviews(5),
+            'lastReviews' => $reviewRepository->getNewReviews(5),
+            'topReviews' => $reviewRepository->getTopReviews(5),
+            'tags' => $tagRepository->getTagsByReviewsCount(),
         ]);
     }
 }
