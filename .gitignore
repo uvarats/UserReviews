@@ -6,6 +6,5 @@
 /public/bundles/
 /var/
 /vendor/
-###< symfony/framework-bundle ###
 /node_modules/
-/node_modules/@popperjs
+###< symfony/framework-bundle ###
