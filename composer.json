@@ -58,10 +58,6 @@
         "twig/markdown-extra": "^3.3",
         "twig/string-extra": "^3.3",
         "twig/twig": "^2.12|^3.0",
-        "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.0",
-        "symfony/stopwatch": "5.4.*",
-        "symfony/web-profiler-bundle": "5.4.*"
     },
     "config": {
         "allow-plugins": {
