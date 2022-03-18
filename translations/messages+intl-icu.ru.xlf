@@ -109,6 +109,14 @@
         <source>Comment has been removed.</source>
         <target>Комментарий был удален.</target>
       </trans-unit>
+      <trans-unit id="0">
+        <source>Login with Google</source>
+        <target>Войти с помощью Google</target>
+      </trans-unit>
+      <trans-unit id="1">
+        <source>Login with Facebook</source>
+        <target>Войти с помощью Facebook</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
