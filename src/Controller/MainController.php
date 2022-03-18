@@ -4,14 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Review;
 use App\Entity\Tag;
-use App\Entity\User;
-use App\Service\CloudService;
-use App\Service\ReviewsService;
-use ContainerIjylEKr\getFosElastica_Index_ReviewService;
-use Doctrine\ORM\EntityManagerInterface;
-use FOS\ElasticaBundle\Finder\FinderInterface;
-use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
