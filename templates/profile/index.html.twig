@@ -18,7 +18,7 @@
                     <h1>{{ user.userIdentifier }}</h1>
                     {% if app.user %}
                         {% if app.user.id == user.id %}
-                            <button type="button" class="btn btn-outline-primary">Edit profile</button>
+                            <button type="button" class="btn btn-outline-primary">{{ 'Edit profile'|trans }}</button>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -27,7 +27,7 @@
         <div class="mt-4 bg-light">
             <div class="row justify-content-between mt-3">
                 <div class="col-auto">
-                    <h3>Reviews</h3>
+                    <h3>{{ 'Reviews'|trans }}</h3>
                 </div>
                 {% if app.user %}
                     {% if app.user.id == user.id or "ROLE_ADMIN" in app.user.roles %}

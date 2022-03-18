@@ -20,7 +20,7 @@ class TagController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/tag/{tag}', name: 'app_tag')]
+    #[Route('/{_locale<%app.supported_locales%>}/tag/{tag}', name: 'app_tag')]
     public function index(string $tag): Response
     {
         $reviews = $this->entityManager->getRepository(Review::class);

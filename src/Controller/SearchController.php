@@ -21,7 +21,7 @@ class SearchController extends AbstractController
         $this->finder = $finder;
     }
 
-    #[Route('/search', name: 'app_search')]
+    #[Route('/{_locale<%app.supported_locales%>}/search', name: 'app_search')]
     public function index(Request $request): Response
     {
         $query = $request->request->get('_search');

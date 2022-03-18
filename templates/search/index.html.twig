@@ -8,12 +8,12 @@
         <div class="col m-3">
             {% if results|length != 0 %}
                 <div class="text-center">
-                    <h2>Search results</h2>
-                    <p>At the request <strong>"{{ query }}"</strong> the following reviews were found:</p>
+                    <h2>{{ 'Search results'|trans }}</h2>
+                    <p>{{ 'At the request'|trans }} <strong>"{{ query }}"</strong> {{ 'the following reviews were found'|trans }}:</p>
                 </div>
                 {{ include('main/_reviews.html.twig', {reviews: results}) }}
             {% else %}
-                <h3>Nothing was found.</h3>
+                <h3>{{ 'Nothing was found.'|trans }}</h3>
             {% endif %}
         </div>
     </div>

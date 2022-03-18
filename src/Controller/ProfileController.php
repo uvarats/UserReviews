@@ -15,12 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'profile_stub')]
-    public function profile(){
-        return $this->redirectToRoute('main');
-    }
-
-    #[Route('/profile/{id}', name: 'profile')]
+    #[Route('/{_locale<%app.supported_locales%>}/profile/{id}', name: 'profile')]
     public function index(int $id, ManagerRegistry $doctrine, CloudService $cloud): Response
     {
         $entityManager = $doctrine->getManager();

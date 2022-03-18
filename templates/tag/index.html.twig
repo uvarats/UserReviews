@@ -12,7 +12,8 @@
                 </div>
                 {{ include('main/_reviews.html.twig', {reviews: results}) }}
             {% else %}
-                <h3>Nothing was found.</h3>
+                {{ mes|trans }}
+                <h3>{{ 'Nothing was found.'|trans }}</h3>
             {% endif %}
         </div>
     </div>

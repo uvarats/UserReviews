@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Выход</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="ScJmuqq" resname="Search">
+        <source>Search</source>
+        <target>Поиск</target>
+      </trans-unit>
+      <trans-unit id="b4pr6lE" resname="UserReviews - Main!">
+        <source>UserReviews - Main!</source>
+        <target>UserReviews - Главная!</target>
+      </trans-unit>
+      <trans-unit id="ZXObwGq" resname="New reviews">
+        <source>New reviews</source>
+        <target>Новые обзоры</target>
+      </trans-unit>
+      <trans-unit id="9mu_cTQ" resname="Top reviews">
+        <source>Top reviews</source>
+        <target>Лучшие обзоры</target>
+      </trans-unit>
+      <trans-unit id="RmNw7KY" resname="Tags cloud">
+        <source>Tags cloud</source>
+        <target>Облако тегов</target>
+      </trans-unit>
+      <trans-unit id="FcSqEwN" resname="Edit profile">
+        <source>Edit profile</source>
+        <target>Редактировать профиль</target>
+      </trans-unit>
+      <trans-unit id="hMt4cbd" resname="Reviews">
+        <source>Reviews</source>
+        <target>Обзоры</target>
+      </trans-unit>
+      <trans-unit id="5zD6Ums" resname="User rating">
+        <source>User rating</source>
+        <target>Пользовательская оценка</target>
+      </trans-unit>
+      <trans-unit id="RPXj__x" resname="Comment">
+        <source>Comment</source>
+        <target>Комментарии</target>
+      </trans-unit>
+      <trans-unit id="1ESxh3x" resname="Review remove confirmation.">
+        <source>Review remove confirmation.</source>
+        <target>Подтверждение.</target>
+      </trans-unit>
+      <trans-unit id="7ud59Mo" resname="Are you sure want to remove this review? Changes cannot be undone.">
+        <source>Are you sure want to remove this review? Changes cannot be undone.</source>
+        <target>Вы действительно хотите удалить данный обзор? Изменения необратимы!</target>
+      </trans-unit>
+      <trans-unit id="GXZu1sy" resname="Cancel">
+        <source>Cancel</source>
+        <target>Отмена</target>
+      </trans-unit>
+      <trans-unit id="2EdSh_O" resname="Yes, I am sure!">
+        <source>Yes, I am sure!</source>
+        <target>Да, я уверен!</target>
+      </trans-unit>
+      <trans-unit id="6XiwDeR" resname="Search results">
+        <source>Search results</source>
+        <target>Результаты поиска</target>
+      </trans-unit>
+      <trans-unit id="GsY_L.H" resname="At the request">
+        <source>At the request</source>
+        <target>По запросу</target>
+      </trans-unit>
+      <trans-unit id="3yHK3IU" resname="the following reviews were found">
+        <source>the following reviews were found</source>
+        <target>были найдены следующие обзоры</target>
+      </trans-unit>
+      <trans-unit id="8ujrr60" resname="Nothing was found.">
+        <source>Nothing was found.</source>
+        <target>Ничего не найдено.</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>Пожалуйста, войдите</target>
+      </trans-unit>
+      <trans-unit id="kFkFZkv" resname="We support only socials authorization">
+        <source>We support only socials authorization</source>
+        <target>Мы поддерживаем только авторизацию с помощью социальных сетей</target>
+      </trans-unit>
+      <trans-unit id="zI.Z63_" resname="Welcome!">
+        <source>Welcome!</source>
+        <target>Добро пожаловать!</target>
+      </trans-unit>
+      <trans-unit id="1pajW90" resname="Profile">
+        <source>Profile</source>
+        <target>Профиль</target>
+      </trans-unit>
+      <trans-unit id="wcIksDz" resname="Admin">
+        <source>Admin</source>
+        <target>Админ-панель</target>
+      </trans-unit>
+      <trans-unit id="DHNuUEE" resname="Leave comment">
+        <source>Leave comment</source>
+        <target>Оставить комментарий</target>
+      </trans-unit>
+      <trans-unit id="VX2Nvy1" resname="Comment has been removed.">
+        <source>Comment has been removed.</source>
+        <target>Комментарий был удален.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

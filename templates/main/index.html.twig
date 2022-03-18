@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}UserReviews - Main!{% endblock %}
+{% block title %}{{ 'UserReviews - Main!'|trans }}{% endblock %}
 
 {% block body %}
     {{ parent() }}
@@ -9,7 +9,7 @@
             <div class="col m-4 bg-light rounded rounded-3">
                 <div class="m-2">
                     <div class="text-center">
-                        <h2>New reviews</h2>
+                        <h2>{{ 'New reviews'|trans }}</h2>
                     </div>
                     {{ include('main/_reviews.html.twig', {reviews: lastReviews}) }}
                 </div>
@@ -17,7 +17,7 @@
             <div class="col m-4 bg-light rounded rounded-3">
                 <div class="m-2">
                     <div class="text-center">
-                        <h2>Top reviews</h2>
+                        <h2>{{ 'Top reviews'|trans }}</h2>
                     </div>
                     {{ include('main/_reviews.html.twig', {reviews: topReviews}) }}
                 </div>
@@ -27,7 +27,7 @@
             <div class="col m-4 bg-light rounded rounded-3">
                 <div class="m-3">
                     <div class="text-center">
-                        <h2>Tags cloud</h2>
+                        <h2>{{ 'Tags cloud'|trans }}</h2>
                     </div>
                     <div id="tags">
                         {% for tag in tags %}

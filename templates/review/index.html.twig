@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="mt-3" id="rating">
-                    <h6>User rating: {{ review.rating }}★</h6>
+                    <h6>{{ 'User rating'|trans }}: {{ review.rating }}★</h6>
                 </div>
                 <div id="text">
                     <p>{{ review.text|markdown_to_html }}</p>
@@ -74,9 +74,9 @@
                 <div class="m-2" id="comment_field">
                     {{ form_start(comment) }}
                         {{ form_errors(comment) }}
-                        <h3>Comment</h3>
+                        <h3>{{ 'Comment'|trans }}</h3>
                         {{ form_widget(comment.text) }}
-                        <input type="submit" class="btn btn-primary mt-3" value="Comment">
+                        <input type="submit" class="btn btn-primary mt-3" value="{{ 'Leave comment'|trans }}">
                     {{ form_end(comment) }}
                 </div>
                 <div id="comments_section">
@@ -122,7 +122,7 @@
                 let parentDiv = $(this).parent()
                     .parent()
                     .parent();
-                parentDiv[0].innerHTML = "<p class='text-center mt-3'>Comment has been removed.</p";
+                parentDiv[0].innerHTML = "<p class='text-center mt-3'>{{ 'Comment has been removed.'|trans }}</p";
                 jQuery.ajax({
                     url: '/comment/' + commentId + "/remove",
                     success: function (data) {

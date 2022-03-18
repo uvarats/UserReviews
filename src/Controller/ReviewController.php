@@ -31,7 +31,7 @@ class ReviewController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/review/add', name: 'review_add')]
+    #[Route('/{_locale<%app.supported_locales%>}/review/add', name: 'review_add')]
     public function addReview(Request $request): RedirectResponse|Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -55,7 +55,7 @@ class ReviewController extends AbstractController
             ]
         );
     }
-    #[Route('/review/edit/{id}', name: 'review_edit')]
+    #[Route('/{_locale<%app.supported_locales%>}/review/edit/{id}', name: 'review_edit')]
     public function edit(Review $review, Request $request): RedirectResponse|Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -103,7 +103,7 @@ class ReviewController extends AbstractController
             'error' => 'Unknown comment!',
         ]);
     }
-    #[Route('/review/{id}', name: 'review')]
+    #[Route('/{_locale<%app.supported_locales%>}/review/{id}', name: 'review')]
     public function index(Request $request, int $id): Response
     {
         $review = $this->entityManager
