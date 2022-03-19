@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
-use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
