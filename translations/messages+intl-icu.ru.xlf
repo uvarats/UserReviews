@@ -109,13 +109,57 @@
         <source>Comment has been removed.</source>
         <target>Комментарий был удален.</target>
       </trans-unit>
-      <trans-unit id="0">
+      <trans-unit id="AafVK20" resname="Login with Google">
         <source>Login with Google</source>
         <target>Войти с помощью Google</target>
       </trans-unit>
-      <trans-unit id="1">
+      <trans-unit id="BrTsYDA" resname="Login with Facebook">
         <source>Login with Facebook</source>
         <target>Войти с помощью Facebook</target>
+      </trans-unit>
+      <trans-unit id="8OXQOyZ" resname="Review name">
+        <source>Review name</source>
+        <target>Название обзора</target>
+      </trans-unit>
+      <trans-unit id="NMoOdmC" resname="Group">
+        <source>Group</source>
+        <target>Группа</target>
+      </trans-unit>
+      <trans-unit id="nylTBGT" resname="Rating">
+        <source>Rating</source>
+        <target>Оценка</target>
+      </trans-unit>
+      <trans-unit id="zKBmL53" resname="Likes">
+        <source>Likes</source>
+        <target>Лайки</target>
+      </trans-unit>
+      <trans-unit id="NV958p1" resname="Comments">
+        <source>Comments</source>
+        <target>Комментарии</target>
+      </trans-unit>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
+        <target>Действия</target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="L65vsws" resname="E-Mail">
+        <source>E-Mail</source>
+        <target>Почта</target>
+      </trans-unit>
+      <trans-unit id="APrzbYw" resname="Reg. Date">
+        <source>Reg. Date</source>
+        <target>Дата регистрации</target>
+      </trans-unit>
+      <trans-unit id="yj3GEvR" resname="Locale">
+        <source>Locale</source>
+        <target>Локализация</target>
+      </trans-unit>
+      <trans-unit id="bpNgLq3" resname="Tag:">
+        <source>Tag:</source>
+        <target>Тег:</target>
       </trans-unit>
     </body>
   </file>

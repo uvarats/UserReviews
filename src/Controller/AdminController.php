@@ -12,9 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/{_locale<%app.supported_locales%>}/admin', name: 'admin')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $users = $entityManager->getRepository(User::class)->findAll();
         return $this->render('admin/index.html.twig', [
             'users' => $users,

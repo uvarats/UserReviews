@@ -8,10 +8,10 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">E-Mail</th>
-                <th scope="col">Reg. Date</th>
-                <th scope="col">Locale</th>
+                <th scope="col">{{ 'Username'|trans }}</th>
+                <th scope="col">{{ 'E-Mail'|trans }}</th>
+                <th scope="col">{{ 'Reg. Date'|trans }}</th>
+                <th scope="col">{{ 'Locale'|trans }}</th>
                 <th scope="col">Theme</th>
             </tr>
         </thead>
@@ -20,7 +20,7 @@
                 <tr>
                     <th scope="row">{{ user.id }}</th>
                     <td>
-                        <a href="/profile/{{ user.id }}">
+                        <a href="{{ path('profile', {id: user.id}) }}">
                             <div>
                                 {{ user.userIdentifier }}
                             </div>

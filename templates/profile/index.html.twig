@@ -45,17 +45,16 @@
                     data-toggle="table"
                     data-pagination="true"
                     data-search="true"
-                    data-advanced-search="true"
                     data-id-table="reviewsTable">
                 <thead>
                     <tr>
-                        <th data-sortable="true">Review name</th>
-                        <th data-sortable="true">Group</th>
-                        <th data-sortable="true">Rating</th>
-                        <th data-sortable="true">Likes</th>
-                        <th data-sortable="true">Comments</th>
+                        <th data-sortable="true">{{ 'Review name'|trans }}</th>
+                        <th data-sortable="true">{{ 'Group'|trans }}</th>
+                        <th data-sortable="true">{{ 'Rating'|trans }}</th>
+                        <th data-sortable="true">{{ 'Likes'|trans }}</th>
+                        <th data-sortable="true">{{ 'Comments'|trans }}</th>
                         {% if app.user and app.user.id == user.id %}
-                            <th>Actions</th>
+                            <th>{{ 'Actions'|trans }}</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -67,7 +66,9 @@
                             <td>{{ review.rating }}</td>
                             <td>{{ review.likes|length }}</td>
                             <td>{{ review.comments|length }}</td>
-                            <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
+                            {% if app.user and app.user.id == user.id %}
+                                <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>

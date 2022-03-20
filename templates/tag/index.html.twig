@@ -8,7 +8,7 @@
         <div class="col m-3">
             {% if results|length != 0 %}
                 <div class="text-center">
-                    <h2>Tag: {{ tag }}</h2>
+                    <h2>{{ 'Tag:'|trans }} {{ tag }}</h2>
                 </div>
                 {{ include('main/_reviews.html.twig', {reviews: results}) }}
             {% else %}
