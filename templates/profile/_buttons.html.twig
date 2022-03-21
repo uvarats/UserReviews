@@ -8,8 +8,8 @@
                     </button>
                 </form>
             </div>
-            <div class="col-auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <button data-review="{{ review.id }}" class="btn btn-outline-danger btn-sm deleteReview" id="delete">
+            <div class="col-auto">
+                <button data-review="{{ review.id }}" onclick="reviewDeleteFn({{ review.id }})" class="btn btn-outline-danger btn-sm deleteReview">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>

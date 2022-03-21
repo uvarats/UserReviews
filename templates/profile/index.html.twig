@@ -67,7 +67,7 @@
                             <td>{{ review.likes|length }}</td>
                             <td>{{ review.comments|length }}</td>
                             {% if app.user and app.user.id == user.id %}
-                                <td>{{ include('review/_author_buttons.html.twig', {review: review}) }}</td>
+                                <td>{{ include('profile/_buttons.html.twig', {review: review}) }}</td>
                             {% endif %}
                         </tr>
                     {% endfor %}
@@ -75,10 +75,29 @@
             </table>
         </div>
     </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ 'Review remove confirmation.'|trans }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ 'Are you sure want to remove this review? Changes cannot be undone.'|trans }}
+                    <span hidden id="userId"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{ 'Cancel'|trans }}</button>
+                    <button type="button" onclick="modalConfirm()" class="btn btn-outline-danger">{{ 'Yes, I am sure!'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
 {% endblock %}
