@@ -4,8 +4,13 @@ function reviewDeleteFn(id){
     $("#staticBackdrop").modal('show');
 }
 function modalConfirm(){
-    $.ajax({
-        url: 'review/remove/' . $("#userId").text(),
-        method: 'POST'
-    })
+    let id = $('#userId').text()
+    jQuery.ajax({
+        url: '/review/remove/' + id,
+        method: 'POST',
+        success: function () {
+            window.location.reload();
+        }
+    });
+    $("#staticBackdrop").modal('hide');
 }

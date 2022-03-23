@@ -72,7 +72,6 @@ class ReviewController extends AbstractController
         }
         return $this->redirectToRoute('main');
     }
-
     #[Route('/review/remove/{id}', name: 'review_remove', methods: ['POST'])]
     public function remove(Review $review): RedirectResponse
     {

@@ -13,9 +13,15 @@
             <div class="col m-5 bg-light rounded-5">
                 <div class="m-3">
                     {{ form_start(form) }}
-                    {{ form_row(form.name) }}
-                    {{ form_row(form.reviewGroup) }}
-                    {{ form_row(form.tags) }}
+
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+
+                        {{ form_label(form.reviewGroup) }}
+                        {{ form_widget(form.reviewGroup) }}
+
+                        {{ form_label(form.tags) }}
+                        {{ form_widget(form.tags) }}
                     {{ form_row(form.rating) }}
                     {{ form_row(form.text) }}
                     <input class="btn btn-primary mb-2" type="submit" value="Submit">

@@ -42,9 +42,11 @@
                 {% endif %}
             </div>
             <table
+                    id="reviews"
                     data-toggle="table"
                     data-pagination="true"
                     data-search="true"
+                    data-locale="{{ app.request.locale }}"
                     data-id-table="reviewsTable">
                 <thead>
                     <tr>
@@ -61,7 +63,7 @@
                 <tbody>
                     {% for review in user.reviews %}
                         <tr>
-                            <th>{{ review.name }}</th>
+                            <th><a href="{{ path('review', {'id': review.id}) }}">{{ review.name }}</a></th>
                             <td>{{ review.reviewGroup }}</td>
                             <td>{{ review.rating }}</td>
                             <td>{{ review.likes|length }}</td>
@@ -100,4 +102,6 @@
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
+    <script src="{{ asset('js/bootstrap-table-ru.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-table-en.js') }}"></script>
 {% endblock %}

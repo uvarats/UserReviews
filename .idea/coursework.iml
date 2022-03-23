@@ -160,5 +160,7 @@
     <orderEntry type="library" name="bootstrap-table" level="application" />
     <orderEntry type="library" name="@popperjs" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="bootstrap-table-en-US" level="application" />
+    <orderEntry type="library" name="bootstrap-table-ru-RU" level="application" />
   </component>
 </module>
