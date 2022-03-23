@@ -16,6 +16,7 @@
                 <img class="avatar avatar-128 bg-light rounded-circle text-white p-2 border-0" src="{{ user.avatarUrl }}"/>
                 <div class="col">
                     <h1>{{ user.userIdentifier }}</h1>
+                    <p>{{ 'Total user likes:'|trans }} {{ total_likes }}♥</p>
                     {% if app.user %}
                         {% if app.user.id == user.id %}
                             <button type="button" class="btn btn-outline-primary">{{ 'Edit profile'|trans }}</button>
@@ -63,7 +64,7 @@
                 <tbody>
                     {% for review in user.reviews %}
                         <tr>
-                            <th><a href="{{ path('review', {'id': review.id}) }}">{{ review.name }}</a></th>
+                            <th><a style="text-decoration: inherit;" href="{{ path('review', {'id': review.id}) }}">{{ review.name }}</a></th>
                             <td>{{ review.reviewGroup }}</td>
                             <td>{{ review.rating }}</td>
                             <td>{{ review.likes|length }}</td>

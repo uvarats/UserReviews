@@ -44,7 +44,8 @@ class TagRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-    public function getTagsByReviewsCount(){
+    public function getTagsByReviewsCount(): array
+    {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             "SELECT t, r

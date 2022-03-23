@@ -14,6 +14,8 @@
     </head>
     <body>
         {% block body %}
+            {% set current_route = app.request.get('_route') %}
+            {% set current_route_params = app.request.get('_route_params') %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ path('main') }}">User Reviews</a>
@@ -28,8 +30,8 @@
                                     {{ app.request.locale|locale_name(app.request.locale)|u.title }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-language">
-                                    <li><a class="dropdown-item" href="{{ path('main', {_locale: 'en'}) }}">English</a></li>
-                                    <li><a class="dropdown-item" href="{{ path('main', {_locale: 'ru'}) }}">Русский</a></li>
+                                    <li><a class="dropdown-item" href="{{ path(current_route, current_route_params|merge({'_locale': 'en'})) }}">English</a></li>
+                                    <li><a class="dropdown-item" href="{{ path(current_route, current_route_params|merge({'_locale': 'ru'})) }}">Русский</a></li>
                                 </ul>
                             </li>
                             {% if app.user is not null %}

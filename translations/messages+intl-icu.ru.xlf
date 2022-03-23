@@ -161,6 +161,10 @@
         <source>Tag:</source>
         <target>Тег:</target>
       </trans-unit>
+      <trans-unit id="Gg2MsIy" resname="Total user likes:">
+        <source>Total user likes:</source>
+        <target>Общее количество лайков на обзорах пользователя:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
