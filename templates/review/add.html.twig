@@ -14,17 +14,40 @@
                 <div class="m-3">
                     {{ form_start(form) }}
 
-                        {{ form_label(form.name) }}
-                        {{ form_widget(form.name) }}
+                        <div class="mb-3">
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name) }}
+                        </div>
 
-                        {{ form_label(form.reviewGroup) }}
-                        {{ form_widget(form.reviewGroup) }}
+                        <div class="mb-3">
+                            {{ form_label(form.reviewGroup) }}
+                            {{ form_widget(form.reviewGroup) }}
+                        </div>
 
-                        {{ form_label(form.tags) }}
-                        {{ form_widget(form.tags) }}
-                    {{ form_row(form.rating) }}
-                    {{ form_row(form.text) }}
-                    <input class="btn btn-primary mb-2" type="submit" value="Submit">
+                        <div>
+                            <div class="tags mb-3"
+                                data-index="{{ form.tags|length > 0 ? form.tags|last.vars.name + 1 : 0 }}"
+                                data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}"
+                            >
+                                {% for tag in form.tags %}
+                                    {{ form_row(tag) }}
+                                {% endfor %}
+                            </div>
+
+                            <button type="button" class="btn btn-sm btn-outline-primary mb-3 add_item_link" data-collection-holder-class="tags">Add a tag</button>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.rating) }}
+                            {{ form_widget(form.rating) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.text) }}
+                            {{ form_widget(form.text) }}
+                        </div>
+
+                        {{ form_widget(form.submit) }}
                     {{ form_end(form) }}
                 </div>
             </div>
@@ -36,4 +59,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.js"></script>
+    <script>
+        const addFormToCollection = (e) => {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+            console.log('e');
+            const item = document.createElement('div');
+
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+
+            collectionHolder.appendChild(item);
+
+            collectionHolder.dataset.index++;
+        };
+        document
+            .querySelectorAll('.add_item_link')
+            .forEach(btn => {
+                btn.addEventListener("click", addFormToCollection);
+                console.log('query selector is working');
+            });
+    </script>
 {% endblock %}

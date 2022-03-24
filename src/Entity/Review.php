@@ -37,7 +37,7 @@ class Review
     #[ORM\JoinColumn(nullable: false)]
     private $author;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews', cascade: ['persist'])]
     private $tags;
 
     #[ORM\OneToMany(mappedBy: 'Review', targetEntity: Comment::class)]
