@@ -6,6 +6,7 @@ use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
@@ -13,10 +14,12 @@ class Tag
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
-    #[ORM\Column(type: 'string', length: 50)]
-    private $tag;
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
+    #[Assert\Unique]
+    #[Assert\NotBlank]
+    private ?string $tag;
 
     #[ORM\ManyToMany(targetEntity: Review::class, mappedBy: 'tags')]
     private $reviews;

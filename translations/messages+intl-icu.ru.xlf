@@ -205,6 +205,14 @@
         <source>Tags</source>
         <target>Теги</target>
       </trans-unit>
+      <trans-unit id="RWbdQnz" resname="Enter the tags separated by commas.">
+        <source>Enter the tags separated by commas.</source>
+        <target>Введите теги, разделяя их запятой.</target>
+      </trans-unit>
+      <trans-unit id="r.B2alK" resname="Review">
+        <source>Review</source>
+        <target>Действия с обзором</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -11,19 +12,20 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'text')]
-    private $text;
+    #[Assert\NotBlank]
+    private ?string $text;
 
     #[ORM\ManyToOne(targetEntity: Review::class, inversedBy: 'comments')]
-    private $Review;
+    private ?Review $Review;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
-    private $author;
+    private ?User $author;
 
     #[ORM\Column(type: 'datetime')]
-    private $postdate;
+    private ?\DateTimeInterface $postdate;
 
 
     public function getId(): ?int

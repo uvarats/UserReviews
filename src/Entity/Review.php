@@ -6,6 +6,7 @@ use App\Repository\ReviewRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -13,34 +14,40 @@ class Review
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'float')]
-    private $rating;
+    #[Assert\Range(
+        min: 0.5,
+        max: 5.0
+    )]
+    private ?float $rating;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    #[Assert\NotBlank]
+    private ?string $name;
 
     #[ORM\Column(type: 'string', length: 20)]
-    private $reviewGroup;
+    private ?string $reviewGroup;
 
     #[ORM\Column(type: 'text')]
-    private $text;
+    #[Assert\NotBlank]
+    private ?string $text;
 
     #[ORM\Column(type: 'datetime')]
-    private $creationTime;
+    private ?\DateTimeInterface $creationTime;
 
     #[ORM\Column(type: 'array')]
-    private $likes = [];
+    private array $likes = [];
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private $author;
+    private ?User $author;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews', cascade: ['persist'])]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews', cascade: ['persist', 'remove'])]
     private $tags;
 
-    #[ORM\OneToMany(mappedBy: 'Review', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'Review', targetEntity: Comment::class, cascade: ['remove'])]
     private $comments;
 
     public function __construct()

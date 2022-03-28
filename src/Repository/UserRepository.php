@@ -38,7 +38,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function getTotalLikes(int $id){
+    public function getTotalLikes(int $id): int
+    {
+        $result = $this->getUserWithReviews($id);
+        $likes = 0;
+        foreach ($result->getReviews() as $review){
+            $likes += count($review->getLikes());
+        }
+        return $likes;
+    }
+    public function getUserWithReviews(int $id){
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT u, r
@@ -49,14 +58,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         )->setParameter('id', $id);
         /** @var User $result */
         try {
-            $result = $query->getSingleResult();
+            return $query->getSingleResult();
         } catch (NoResultException|NonUniqueResultException $e) {
         }
-        $likes = 0;
-        foreach ($result->getReviews() as $review){
-            $likes += count($review->getLikes());
-        }
-        return $likes;
+        return null;
     }
     // /**
     //  * @return User[] Returns an array of User objects

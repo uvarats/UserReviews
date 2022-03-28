@@ -73,8 +73,9 @@ class ReviewController extends AbstractController
         return $this->redirectToRoute('main');
     }
     #[Route('/review/remove/{id}', name: 'review_remove', methods: ['POST'])]
-    public function remove(Review $review): RedirectResponse
+    public function remove(int $id): RedirectResponse
     {
+        $review = $this->entityManager->getRepository(Review::class)->find($id);
         /** @var User $user */
         $user = $this->getUser();
         if($review->getAuthor()->getId() === $user->getId() || $this->isGranted('ROLE_ADMIN')){

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Review;
 use App\Entity\Tag;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\Expr\Select;
@@ -40,11 +41,28 @@ class ReviewAddingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('tags', CollectionType::class, [
-                'entry_type' => TagType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => true,
+            ->add('tags', TextType::class, [
+                'getter' => function (Review $review, FormInterface $form): string
+                {
+                    $tags = $review->getTags()->toArray();
+                    return implode(', ', $tags);
+                },
+                'setter' => function (Review &$review, string $tags, FormInterface $form): void
+                {
+                    $tagsRepository = $this->entityManager->getRepository(Tag::class);
+                    $explodedTags = explode(', ', $tags);
+                    foreach ($explodedTags as $tag){
+                        $t = $tagsRepository->findOneBy(['tag' => $tag]);
+                        if(!$t){
+                            $t = new Tag();
+                            $t->setTag($tag);
+                            $this->entityManager->persist($t);
+                            $this->entityManager->flush();
+                        }
+                        $review->addTag($t);
+                    }
+                },
+                'help' => 'Enter the tags separated by commas.'
             ])
             ->add('rating', TextType::class, [
                 'attr' => [

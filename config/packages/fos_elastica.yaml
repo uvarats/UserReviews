@@ -13,6 +13,6 @@ fos_elastica:
                 name: ~
                 text: ~
                 comments:
-                    type: nested
+                    type: object
                     properties:
                         text: ~

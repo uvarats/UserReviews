@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -65,7 +67,8 @@ class ReviewRepository extends ServiceEntityRepository
             ->setMaxResults($count)
             ->getResult();
     }
-    public function getReviewsByTag(string $tag){
+    public function getReviewsByTag(string $tag): array
+    {
         $em = $this->getEntityManager();
         /** @var Review[] $reviews */
         $reviews = $em->createQuery(
@@ -77,6 +80,21 @@ class ReviewRepository extends ServiceEntityRepository
             return in_array($tag, $value->getTags()->toArray());
         }, ARRAY_FILTER_USE_BOTH);
     }
+    public function customFind(int $id) : ?Review{
+        $em = $this->getEntityManager();
+        return $em->createQuery(
+            'SELECT r, t, c
+             FROM App\Entity\Review r
+             JOIN r.tags t
+             JOIN r.comments c
+             WHERE r.id = :id'
+        )->setParameter('id', $id)
+            ->getResult()[0];
+    }
+//    public function removeReviewComments(int $id){
+//        $em = $this->getEntityManager();
+//
+//    }
     // /**
     //  * @return Review[] Returns an array of Review objects
     //  */
