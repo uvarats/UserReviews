@@ -62,7 +62,7 @@ class ReviewController extends AbstractController
             $form = $this->createForm(ReviewAddingType::class, $review);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
-                $this->entityManager->persist($review);
+                //$this->entityManager->persist($review);
                 $this->entityManager->flush();
                 return $this->redirectToRoute('review', ['id' => $review->getId()]);
             }

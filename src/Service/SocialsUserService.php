@@ -19,8 +19,6 @@ class SocialsUserService
         return (new User())
             ->setRegisterDate(new \DateTime())
             ->setLikes(0)
-            ->setTheme(0)
-            ->setLocale('en')
             ->setPassword('0');
     }
 
