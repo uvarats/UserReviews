@@ -61,7 +61,8 @@ class ReviewAddingType extends AbstractType
                     'Games' => 'Games',
                     'Books' => 'Books',
                     'Films' => 'Films',
-                ]
+                ],
+                'translation_domain' => 'messages',
             ])
             ->add('text', TextareaType::class, [
                 'attr' => [

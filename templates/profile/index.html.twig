@@ -65,7 +65,7 @@
                     {% for review in user.reviews %}
                         <tr>
                             <th><a style="text-decoration: inherit;" href="{{ path('review', {'id': review.id}) }}">{{ review.name }}</a></th>
-                            <td>{{ review.reviewGroup }}</td>
+                            <td>{{ review.reviewGroup|trans }}</td>
                             <td>{{ review.rating }}</td>
                             <td>{{ review.likes|length }}</td>
                             <td>{{ review.comments|length }}</td>

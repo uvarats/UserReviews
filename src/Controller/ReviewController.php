@@ -121,7 +121,6 @@ class ReviewController extends AbstractController
                 $this->entityManager->flush();
                 return $this->redirect($request->getUri()); //redirect for form reset
             }
-
             return $this->renderForm('review/index.html.twig', [
                 'review' => $review,
                 'comment' => $form,

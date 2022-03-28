@@ -31,13 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     private $register_date;
 
-
-    #[ORM\Column(type: 'boolean')]
-    private $theme;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $locale;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $email;
 
@@ -161,30 +154,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRegisterDate(\DateTimeInterface $register_date): self
     {
         $this->register_date = $register_date;
-
-        return $this;
-    }
-
-    public function getTheme(): ?bool
-    {
-        return $this->theme;
-    }
-
-    public function setTheme(bool $theme): self
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
-    }
-
-    public function setLocale(string $locale): self
-    {
-        $this->locale = $locale;
 
         return $this;
     }

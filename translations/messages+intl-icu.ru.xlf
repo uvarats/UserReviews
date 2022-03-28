@@ -165,6 +165,46 @@
         <source>Total user likes:</source>
         <target>Общее количество лайков на обзорах пользователя:</target>
       </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Название обзора</target>
+      </trans-unit>
+      <trans-unit id="6WWMgY6" resname="Review group">
+        <source>Review group</source>
+        <target>Группа обзора</target>
+      </trans-unit>
+      <trans-unit id="cZiMTY4" resname="Text">
+        <source>Text</source>
+        <target>Текст</target>
+      </trans-unit>
+      <trans-unit id="FV_BbAQ" resname="Submit">
+        <source>Submit</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="rP1Ee6t" resname="Add a tag">
+        <source>Add a tag</source>
+        <target>Добавить тег</target>
+      </trans-unit>
+      <trans-unit id="2drngQO" resname="Games">
+        <source>Games</source>
+        <target>Игры</target>
+      </trans-unit>
+      <trans-unit id="756CGsi" resname="Films">
+        <source>Films</source>
+        <target>Фильмы</target>
+      </trans-unit>
+      <trans-unit id="naf3a8g" resname="Books">
+        <source>Books</source>
+        <target>Книги</target>
+      </trans-unit>
+      <trans-unit id="_MZZuLk" resname="Delete this tag">
+        <source>Delete this tag</source>
+        <target>Удалить данный тег</target>
+      </trans-unit>
+      <trans-unit id="EzEnW8U" resname="Tags">
+        <source>Tags</source>
+        <target>Теги</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

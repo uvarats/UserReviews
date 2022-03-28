@@ -47,7 +47,7 @@
                 </div>
                 <div class="row mb-3" id="review_footer">
                     <div id="post_date">
-                        <p class="text-muted">{{ review.creationTime|date('Y-m-d H:i') }}</p>
+                        <p class="text-muted">{{ review.creationTime|format_datetime('medium', 'short') }}</p>
                     </div>
                     <div class="col-auto" id="likebtn">
                         {% if app.user is not null %}
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="text-muted">
-                                        {{ comment.postdate|date('Y-m-d H:i') }}
+                                        {{ comment.postdate|format_datetime('medium', 'short') }}
                                     </p>
                                     {% if app.user.id == comment.author.id %}
                                         <button class="btn btn-outline-danger remove_comment" value="{{ comment.id }}">

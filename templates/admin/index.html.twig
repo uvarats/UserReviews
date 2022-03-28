@@ -11,8 +11,6 @@
                 <th scope="col">{{ 'Username'|trans }}</th>
                 <th scope="col">{{ 'E-Mail'|trans }}</th>
                 <th scope="col">{{ 'Reg. Date'|trans }}</th>
-                <th scope="col">{{ 'Locale'|trans }}</th>
-                <th scope="col">Theme</th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +26,6 @@
                     </td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.registerDate|date('Y-m-d H:i:s') }}</td>
-                    <td>{{ user.locale }}</td>
-                    <td>{{ user.theme ? 'Dark' : 'Light' }}</td>
                 </tr>
             {% endfor %}
         </tbody>
