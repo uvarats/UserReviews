@@ -21,7 +21,7 @@ class Tag
     #[ORM\Column(type: 'string', length: 50, unique: true)]
     #[Assert\Unique]
     #[Assert\NotBlank]
-    private ?string $tag;
+    private string $tag;
 
     #[ORM\ManyToMany(targetEntity: Review::class, mappedBy: 'tags')]
     private $reviews;

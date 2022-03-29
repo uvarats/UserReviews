@@ -23,28 +23,28 @@ class Review
         min: 0.5,
         max: 5.0
     )]
-    private ?float $rating;
+    private float $rating;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank]
-    private ?string $name;
+    private string $name;
 
     #[ORM\Column(type: 'string', length: 20)]
-    private ?string $reviewGroup;
+    private string $reviewGroup;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
-    private ?string $text;
+    private string $text;
 
     #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $creationTime;
+    private \DateTimeInterface $creationTime;
 
     #[ORM\Column(type: 'array')]
     private array $likes = [];
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author;
+    private User $author;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'reviews', cascade: ['persist', 'remove'])]
     private $tags;

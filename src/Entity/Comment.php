@@ -18,16 +18,16 @@ class Comment
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
-    private ?string $text;
+    private string $text;
 
     #[ORM\ManyToOne(targetEntity: Review::class, inversedBy: 'comments')]
-    private ?Review $Review;
+    private Review $Review;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
-    private ?User $author;
+    private User $author;
 
     #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $postdate;
+    private \DateTimeInterface $postdate;
 
 
     public function getId(): ?int

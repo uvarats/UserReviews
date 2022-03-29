@@ -22,31 +22,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $username;
+    private string $username;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private $password;
+    private string $password;
 
     #[ORM\Column(type: 'datetime')]
-    private $register_date;
+    private \DateTimeInterface $register_date;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $email;
+    private string $email;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $facebookId;
-
-    #[ORM\Column(type: 'integer')]
-    private $likes;
+    private string $facebookId;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $google_id;
+    private string $google_id;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Review::class, orphanRemoval: true)]
     private $reviews;
@@ -55,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $comments;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $avatarUrl;
+    private string $avatarUrl;
 
     public function __construct()
     {
@@ -192,18 +189,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFacebookId(?string $facebookId): self
     {
         $this->facebookId = $facebookId;
-
-        return $this;
-    }
-
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(int $likes): self
-    {
-        $this->likes = $likes;
 
         return $this;
     }
