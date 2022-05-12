@@ -81,7 +81,10 @@
                 </div>
                 <div id="comments_section">
                     {% for comment in review.comments %}
-                        <div class="row border-top border-bottom">
+                        <div class="row border-top border-bottom" {{ stimulus_controller('comments', {
+                            requestUrl: path('remove_comment', { id: comment.id }),
+                        }
+                        )}}>
                             <div class="col-auto border-0">
                                 {{ include('get/_avatar.html.twig', {avatar_url: comment.author.avatarUrl}) }}
                             </div>
@@ -97,7 +100,7 @@
                                         {{ comment.postdate|format_datetime('medium', 'short') }}
                                     </p>
                                     {% if app.user.id == comment.author.id %}
-                                        <button class="btn btn-outline-danger remove_comment" value="{{ comment.id }}">
+                                        <button class="btn btn-outline-danger remove_comment" {{ stimulus_action('comments', 'remove') }} value="{{ comment.id }}">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     {% endif %}

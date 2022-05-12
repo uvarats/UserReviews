@@ -18,7 +18,8 @@ class LikeService
     {
         $this->entityManager = $entityManager;
     }
-    public function like(int $reviewId, int $userId){
+    public function like(int $reviewId, int $userId): void
+    {
         $review = $this->entityManager
             ->getRepository(Review::class)
             ->findOneBy(['id' => $reviewId]);
@@ -28,14 +29,16 @@ class LikeService
         $this->entityManager->persist($review);
         $this->entityManager->flush();
     }
-    private function setId($userId, array& $likes){
+    private function setId($userId, array& $likes): void
+    {
         if(!in_array($userId, $likes, true)){
             $likes[] = $userId;
         } else {
             $this->removeUserId($likes, $userId);
         }
     }
-    private function removeUserId(array &$ids, int $userId){
+    private function removeUserId(array &$ids, int $userId): void
+    {
         $key = array_search($userId, $ids);
         unset($ids[$key]);
     }

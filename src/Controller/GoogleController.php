@@ -34,13 +34,5 @@ class GoogleController extends AbstractController
     }
     #[Route('/connect/google/check', name: 'connect_google_check')]
     public function connectCheck(Request $request){
-        $client = $this->clientRegistry->getClient('google_main');
-        try{
-            $user = $client->fetchUser();
-            var_dump($user);
-            die;
-        } catch(IdentityProviderException $e){
-            var_dump($e->getMessage()); die;
-        }
     }
 }

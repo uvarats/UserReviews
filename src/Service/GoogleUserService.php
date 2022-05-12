@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Controller\ReviewController;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
@@ -30,7 +32,6 @@ class GoogleUserService
         $this->socialsUserService = $socialsUserService;
         $this->cloudService = $cloudService;
     }
-
 
     public function getPassport(OAuth2ClientInterface $client, AccessToken $accessToken): SelfValidatingPassport
     {
