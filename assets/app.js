@@ -12,3 +12,5 @@ import './styles/app.css';
 import './bootstrap';
 const $ = require('jquery');
 require("bootstrap");
+require("bootstrap-table");
+//require('bootstrap-table-ru');

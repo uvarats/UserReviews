@@ -576,6 +576,12 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/ux-dropzone": {
+        "version": "v2.1.1"
+    },
+    "symfony/ux-turbo": {
+        "version": "v2.1.1"
+    },
     "symfony/validator": {
         "version": "5.4",
         "recipe": {

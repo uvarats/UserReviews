@@ -4,16 +4,16 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
 {% endblock %}
-
 
 {% block body %}
     {{ parent()  }}
     <div class="row m-sm-4">
         <div class="bg-light rounded-3">
             <div class="row m-3">
-                <img class="avatar avatar-128 bg-light rounded-circle text-white p-2 border-0" src="{{ user.avatarUrl }}"/>
+                <div class="col-auto border-0">
+                    <img class="avatar avatar-128 bg-light rounded-circle text-white p-2" src="{{ user.avatarUrl }}"/>
+                </div>
                 <div class="col">
                     <h1>{{ user.userIdentifier }}</h1>
                     <p>{{ 'Total user likes:'|trans }} {{ total_likes }}♥</p>
@@ -101,8 +101,4 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/profile.js') }}"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
-    <script src="{{ asset('js/bootstrap-table-ru.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-table-en.js') }}"></script>
 {% endblock %}

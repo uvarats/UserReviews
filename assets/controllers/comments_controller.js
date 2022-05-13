@@ -10,10 +10,9 @@ export default class extends Controller{
     }
     remove(e){
         e.preventDefault();
-
         axios.get(this.requestUrlValue)
             .then((response) => {
-                console.log(response);
+                this.element.innerHTML = "<p class='text-center mt-3'>Comment has been removed.</p";
             });
     }
 }

@@ -49,10 +49,12 @@
                     <div id="post_date">
                         <p class="text-muted">{{ review.creationTime|format_datetime('medium', 'short') }}</p>
                     </div>
-                    <div class="col-auto" id="likebtn">
+                    <div class="col-auto" id="likebtn" {{ stimulus_controller('review-like', {
+                        requestUrl: path('review_like', { id: review.id })
+                    })}}>
                         {% if app.user is not null %}
-                            <button class="btn btn-outline-primary" onclick="likeReview()">
-                                <a id="likes_count">{{ review.likes|length }}</a>
+                            <button class="btn btn-outline-primary" {{ stimulus_action('review-like', 'like')}}>
+                                <a id="likes_count" {{ stimulus_target('review-like', 'count') }}>{{ review.likes|length }}</a>
                                 {% if app.user.id not in review.likes %}
                                     <i id="heart" class="fa-regular fa-heart"></i>
                                 {% else %}
@@ -79,7 +81,7 @@
                         <input type="submit" class="btn btn-primary mt-3" value="{{ 'Leave comment'|trans }}">
                     {{ form_end(comment) }}
                 </div>
-                <div id="comments_section">
+                <div id="comments">
                     {% for comment in review.comments %}
                         <div class="row border-top border-bottom" {{ stimulus_controller('comments', {
                             requestUrl: path('remove_comment', { id: comment.id }),
@@ -117,43 +119,4 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/review.js') }}"></script>
-    <script>
-        $(document).ready(function (){
-            $('.remove_comment').click(function () {
-                let commentId = $(this)[0].attributes['value'].value;
-                let parentDiv = $(this).parent()
-                    .parent()
-                    .parent();
-                parentDiv[0].innerHTML = "<p class='text-center mt-3'>{{ 'Comment has been removed.'|trans }}</p";
-                jQuery.ajax({
-                    url: '/comment/' + commentId + "/remove",
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
-
-            });
-        });
-        function likeReview(){
-            let likes = $('#likes_count');
-            $.ajax({
-                url: '{{ path('review_like', {id: review.id}) }}',
-                method: 'POST',
-                success: function (data, status, xhttp) {
-                    likes.text(data.new_count);
-                }
-            });
-            let element = $("#heart")[0];
-            if(element.classList.contains('fa-regular')){
-                likes.text(parseInt(likes.text()) + 1);
-                element.classList.remove('fa-regular');
-                element.classList.add('fa-solid');
-            } else if(element.classList.contains('fa-solid')){
-                likes.text(parseInt(likes.text()) - 1);
-                element.classList.remove('fa-solid');
-                element.classList.add('fa-regular');
-            }
-        }
-    </script>
 {% endblock %}

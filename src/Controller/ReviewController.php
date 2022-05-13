@@ -99,7 +99,7 @@ class ReviewController extends AbstractController
             ]);
         }
         return new JsonResponse([
-            'error' => 'Unknown comment!',
+            'response' => 'Unknown comment!',
         ]);
     }
     #[Route('/{_locale<%app.supported_locales%>}/review/{id}', name: 'review')]
@@ -122,7 +122,7 @@ class ReviewController extends AbstractController
                     ->setPostdate(new DateTime());
                 $this->entityManager->persist($comment);
                 $this->entityManager->flush();
-                return $this->redirect($request->getUri()); //redirect for form reset
+                return $this->redirect($request->getUri() . "#comments"); //redirect for form reset
             }
             return $this->renderForm('review/index.html.twig', [
                 'review' => $review,

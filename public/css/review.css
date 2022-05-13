@@ -1,9 +1,3 @@
-.like{
-    background: url("https://res.cloudinary.com/ddvuq8mjp/image/upload/v1646607057/like_kva5ev.png") no-repeat;
-    float: left;
-    height: 24px;
-    width: 24px;
-}
 .profile_url{
     color: inherit;
     text-decoration: inherit;
