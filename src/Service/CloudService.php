@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use CarlosOCarvalho\Flysystem\Cloudinary\CloudinaryAdapter;
 use Cloudinary\Api\Exception\ApiError;
 use Cloudinary\Cloudinary;
+use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemException;
 use Psr\Http\Message\UriInterface;
 
 class CloudService
 {
-    private Cloudinary $cloudinary;
+    private Filesystem $filesystem;
 
     /**
      * @param string $cloudName
@@ -19,25 +22,29 @@ class CloudService
      */
     public function __construct(string $cloudName, string $apiKey, string $apiSecret)
     {
-        $this->cloudinary = new Cloudinary([
-            'cloud' => [
-                'cloud_name' => $cloudName,
-                'api_key' => $apiKey,
-                'api_secret' => $apiSecret],
-            'url' => [
-                'secure' => true]]);
+        $adapter = new CloudinaryAdapter([
+            'api_key' => $apiKey,
+            'api_secret' => $apiSecret,
+            'cloud_name' => $cloudName
+        ]);
+        $this->filesystem = new Filesystem($adapter);
     }
 
-    public function getCloudinary(): Cloudinary
-    {
-        return $this->cloudinary;
-    }
 
     public function getDefaultAvatar(): UriInterface|string
     {
-        return $this
-            ->cloudinary
-            ->image('/default/avatar')
-            ->toUrl();
+        try {
+            $this->filesystem->createDirectory("test_dir");
+        } catch (FilesystemException $e) {
+        }
+        return "";
+    }
+
+    /**
+     * @return Filesystem
+     */
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
     }
 }

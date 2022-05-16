@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="row m-5">
+        <div class="bg-light">
+            <div class="row">
+                <div class="col-12 text-center m-3">
+                    <h3>User profile edit</h3>
+                </div>
+            </div>
+            <div class="container">
+                {{ form(form) }}
+                <div class="row">
+                    <div class="col-auto border-0">
+                        <div class="form2-row">
+                            <div id="avatar">
+                                <img class="avatar avatar-lg-128 bg-light rounded-circle text-white p-2" src="{{ app.user.avatarUrl }}"/>
+                            </div>
+                            <div class="VueSettingsProfile-profile-upload">
+                                <div class="processing-default">
+                                    <input type="button" value="Обновить аватар" class="btn btn-outline-success">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form2-row">
+                            <label class="form-label">Имя</label>
+                            <div class="input-text">
+                                <div class="input-text-input">
+                                    <input type="text" autocomplete="off" class="form-control" spellcheck="false" placeholder="{{ app.user.userIdentifier }}">
+                                </div>
+                                <div class="input-text-actions"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

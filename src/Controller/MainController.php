@@ -6,7 +6,10 @@ namespace App\Controller;
 
 use App\Entity\Review;
 use App\Entity\Tag;
+use App\Service\CloudService;
 use Doctrine\ORM\EntityManagerInterface;
+use League\Flysystem\FileAttributes;
+use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +32,7 @@ class MainController extends AbstractController
         return $this->redirectToRoute("main", ['_locale' => 'en']);
     }
     #[Route('/{_locale<%app.supported_locales%>}', name: 'main')]
-    public function index(): Response
+    public function index(CloudService $cloud): Response
     {
         $reviewRepository = $this->entityManager->getRepository(Review::class);
         $tagRepository = $this->entityManager->getRepository(Tag::class);

@@ -1,4 +1,7 @@
 {
+    "carlosocarvalho/flysystem-cloudinary": {
+        "version": "v2.0.3"
+    },
     "cloudinary/cloudinary_php": {
         "version": "2.6.1"
     },
@@ -145,6 +148,12 @@
     },
     "league/config": {
         "version": "v1.1.1"
+    },
+    "league/flysystem": {
+        "version": "3.0.19"
+    },
+    "league/mime-type-detection": {
+        "version": "1.11.0"
     },
     "league/oauth2-client": {
         "version": "2.6.1"

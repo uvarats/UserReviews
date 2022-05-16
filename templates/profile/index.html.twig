@@ -19,7 +19,9 @@
                     <p>{{ 'Total user likes:'|trans }} {{ total_likes }}♥</p>
                     {% if app.user %}
                         {% if app.user.id == user.id %}
-                            <button type="button" class="btn btn-outline-primary">{{ 'Edit profile'|trans }}</button>
+                            <form action="{{ path('profile_edit') }}">
+                                <button type="submit" class="btn btn-outline-primary">{{ 'Edit profile'|trans }}</button>
+                            </form>
                         {% endif %}
                     {% endif %}
                 </div>

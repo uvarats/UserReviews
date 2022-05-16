@@ -49,7 +49,7 @@
                     <div id="post_date">
                         <p class="text-muted">{{ review.creationTime|format_datetime('medium', 'short') }}</p>
                     </div>
-                    <div class="col-auto" id="likebtn" {{ stimulus_controller('review-like', {
+                    <div class="col-auto" {{ stimulus_controller('review-like', {
                         requestUrl: path('review_like', { id: review.id })
                     })}}>
                         {% if app.user is not null %}
