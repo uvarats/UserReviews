@@ -11,6 +11,7 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 const $ = require('jquery');
+require("@popperjs/core");
 require("bootstrap");
-require("bootstrap-table");
-//require('bootstrap-table-ru');
+require('bootstrap-table');
+require('bootstrap-table/dist/locale/bootstrap-table-ru-RU.min');

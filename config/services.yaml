@@ -19,6 +19,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    App\Validator\IsNameOccupiedValidator:
+        arguments:
+            - '@doctrine.orm.entity_manager'
     App\Controller\SearchController:
         arguments:
             - '@fos_elastica.finder.review'

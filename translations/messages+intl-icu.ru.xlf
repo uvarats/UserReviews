@@ -213,6 +213,26 @@
         <source>Review</source>
         <target>Действия с обзором</target>
       </trans-unit>
+      <trans-unit id="9eGChK3" resname="Profile edit">
+        <source>Profile edit</source>
+        <target>Редактирование профиля</target>
+      </trans-unit>
+      <trans-unit id="TnJdywW" resname="User profile edit">
+        <source>User profile edit</source>
+        <target>Редактирование профиля</target>
+      </trans-unit>
+      <trans-unit id="ZDi8v2P" resname="Don't try to use names that are occupied by other users.">
+        <source>Don't try to use names that are occupied by other users.</source>
+        <target>Не используйте имена, занятые другими пользователями.</target>
+      </trans-unit>
+      <trans-unit id="yo6CbZw" resname="Avatar">
+        <source>Avatar</source>
+        <target>Фото профиля</target>
+      </trans-unit>
+      <trans-unit id="8xWGSqg" resname="This username is occupied.">
+        <source>This username is occupied.</source>
+        <target>Данное имя пользователя занято.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

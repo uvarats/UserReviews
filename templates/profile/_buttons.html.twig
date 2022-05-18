@@ -1,6 +1,8 @@
 {% if app.user %}
-    {% if app.user.id == review.author.id or "ROLE_ADMIN" in app.user.roles %}
-        <div class="row col-auto" id="author_buttons">
+    {% if app.user.id == review.author.id or is_granted("ROLE_ADMIN") %}
+        <div class="row col-auto" id="author_buttons" {{ stimulus_controller('profile', {
+            removeUrl: path('review_remove', { id: review.id })
+        }) }}>
             <div class="col-auto" id="editbtn">
                 <form action="{{ path('review_edit', {'id': review.id}) }}">
                     <button type="submit" class="btn btn-outline-primary btn-sm" id="edit">
@@ -9,10 +11,11 @@
                 </form>
             </div>
             <div class="col-auto">
-                <button data-review="{{ review.id }}" onclick="reviewDeleteFn({{ review.id }})" class="btn btn-outline-danger btn-sm deleteReview">
+                <button {{ stimulus_action('profile', 'remove_modal')}} class="btn btn-outline-danger btn-sm deleteReview">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
+            {{ include('profile/_modal-buttons.html.twig') }}
         </div>
     {% endif %}
 {% endif %}

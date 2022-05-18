@@ -75,7 +75,7 @@ class ReviewController extends AbstractController
         return $this->redirectToRoute('main');
     }
     #[Route('/review/remove/{id}', name: 'review_remove', methods: ['POST'])]
-    public function remove(int $id): RedirectResponse
+    public function remove(int $id): JsonResponse
     {
         $review = $this->entityManager->getRepository(Review::class)->find($id);
         /** @var User $user */
@@ -84,7 +84,9 @@ class ReviewController extends AbstractController
             $this->entityManager->remove($review);
             $this->entityManager->flush();
         }
-        return $this->redirectToRoute('main');
+        return new JsonResponse([
+            'status' => 'OK',
+        ]);
     }
 
     #[Route('/comment/{id}/remove', name: 'remove_comment')]

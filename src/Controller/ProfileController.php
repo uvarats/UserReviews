@@ -53,11 +53,16 @@ class ProfileController extends AbstractController
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
                 $avatar = $form->get('avatar')->getData();
+                $username = $form->get('username')->getData();
                 if($avatar){
                     $fileUrl = $uploader->upload($avatar);
                     $user->setAvatarUrl($fileUrl);
-                    $this->em->flush();
                 }
+                if($username){
+                    $user->setUsername($username);
+                }
+                $this->em->flush();
+                return $this->redirectToRoute('profile', ['id' => $user->getId()]);
             }
             return $this->renderForm('profile/edit-profile.html.twig', [
                 'form' => $form,

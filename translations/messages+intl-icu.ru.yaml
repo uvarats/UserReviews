@@ -1,0 +1,57 @@
+Logout: Выход
+Login: Вход
+Search: Поиск
+'UserReviews - Main!': 'UserReviews - Главная!'
+'New reviews': 'Новые обзоры'
+'Top reviews': 'Лучшие обзоры'
+'Tags cloud': 'Облако тегов'
+'Edit profile': 'Редактировать профиль'
+Reviews: Обзоры
+'User rating': 'Пользовательская оценка'
+Comment: Комментарии
+'Review remove confirmation.': Подтверждение.
+'Are you sure want to remove this review? Changes cannot be undone.': 'Вы действительно хотите удалить данный обзор? Изменения необратимы!'
+Cancel: Отмена
+'Yes, I am sure!': 'Да, я уверен!'
+'Search results': 'Результаты поиска'
+'At the request': 'По запросу'
+'the following reviews were found': 'были найдены следующие обзоры'
+'Nothing was found.': 'Ничего не найдено.'
+'Please sign in': 'Пожалуйста, войдите'
+'We support only socials authorization': 'Мы поддерживаем только авторизацию с помощью социальных сетей'
+Welcome!: 'Добро пожаловать!'
+Profile: Профиль
+Admin: Админ-панель
+'Leave comment': 'Оставить комментарий'
+'Comment has been removed.': 'Комментарий был удален.'
+'Login with Google': 'Войти с помощью Google'
+'Login with Facebook': 'Войти с помощью Facebook'
+'Review name': 'Название обзора'
+Group: Группа
+Rating: Оценка
+Likes: Лайки
+Comments: Комментарии
+Actions: Действия
+Username: Имя
+E-Mail: Почта
+'Reg. Date': 'Дата регистрации'
+Locale: Локализация
+'Tag:': 'Тег:'
+'Total user likes:': 'Общее количество лайков на обзорах пользователя:'
+Name: 'Название обзора'
+'Review group': 'Группа обзора'
+Text: Текст
+Submit: Сохранить
+'Add a tag': 'Добавить тег'
+Games: Игры
+Films: Фильмы
+Books: Книги
+'Delete this tag': 'Удалить данный тег'
+Tags: Теги
+'Enter the tags separated by commas.': 'Введите теги, разделяя их запятой.'
+Review: 'Действия с обзором'
+'Profile edit': 'Редактирование профиля'
+'User profile edit': 'Редактирование профиля'
+'Don''t try to use names that are occupied by other users.': 'Не используйте имена, занятые другими пользователями.'
+Avatar: 'Фото профиля'
+'This username is occupied.': 'Данное имя пользователя занято.'

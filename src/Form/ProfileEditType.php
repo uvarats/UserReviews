@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
+use App\Validator\IsNameOccupied;
 use Nette\Utils\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -30,7 +33,14 @@ class ProfileEditType extends AbstractType
                     ])
                 ]
             ])
-            ->add('username', TextType::class)
+            ->add('username', TextType::class, [
+                'required' => false,
+                'mapped' => false,
+                'help' => "Don't try to use names that are occupied by other users.",
+                'constraints' => [
+                    new IsNameOccupied(),
+                ]
+            ])
             ->add('submit', SubmitType::class)
         ;
     }
