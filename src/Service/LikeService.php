@@ -31,7 +31,7 @@ class LikeService
     }
     private function setId($userId, array& $likes): void
     {
-        if(!in_array($userId, $likes, true)){
+        if (!in_array($userId, $likes, true)) {
             $likes[] = $userId;
         } else {
             $this->removeUserId($likes, $userId);

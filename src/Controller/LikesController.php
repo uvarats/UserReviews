@@ -35,7 +35,7 @@ class LikesController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $review = $this->entityManager->getRepository(Review::class)->find($id);
-        if($review){
+        if ($review) {
             $this->likeService->like($review->getId(), $user->getId());
             return new JsonResponse([
                 'review_id' => $review->getId(),

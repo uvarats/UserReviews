@@ -26,8 +26,8 @@ class ReviewRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param Review $entity
+     * @param bool $flush
      */
     public function add(Review $entity, bool $flush = true): void
     {
@@ -38,8 +38,8 @@ class ReviewRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param Review $entity
+     * @param bool $flush
      */
     public function remove(Review $entity, bool $flush = true): void
     {
@@ -49,23 +49,27 @@ class ReviewRepository extends ServiceEntityRepository
         }
     }
 
-    public function getNewReviews(int $count){
+    public function getNewReviews(int $count)
+    {
         $em = $this->getEntityManager();
         return $em->createQuery(
             "SELECT r
              FROM App\Entity\Review r
              ORDER BY r.creationTime DESC
-             ")
+             "
+        )
             ->setMaxResults($count)
             ->getResult();
     }
-    public function getTopReviews(int $count){
+    public function getTopReviews(int $count)
+    {
         $em = $this->getEntityManager();
         return $em->createQuery(
             "SELECT r
             FROM App\Entity\Review r
             ORDER BY r.likes DESC
-            ")
+            "
+        )
             ->setMaxResults($count)
             ->getResult();
     }
@@ -78,11 +82,12 @@ class ReviewRepository extends ServiceEntityRepository
             FROM App\Entity\Review r
             JOIN r.tags t"
         )->getResult();
-        return array_filter($reviews, function($value, $key) use($tag){
+        return array_filter($reviews, function ($value, $key) use ($tag) {
             return in_array($tag, $value->getTags()->toArray());
         }, ARRAY_FILTER_USE_BOTH);
     }
-    public function customFind(int $id) : ?Review{
+    public function customFind(int $id) : ?Review
+    {
         $em = $this->getEntityManager();
         return $em->createQuery(
             'SELECT r, t, c

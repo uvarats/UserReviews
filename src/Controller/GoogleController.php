@@ -33,6 +33,7 @@ class GoogleController extends AbstractController
             ->redirect([]);
     }
     #[Route('/connect/google/check', name: 'connect_google_check')]
-    public function connectCheck(Request $request){
+    public function connectCheck(Request $request)
+    {
     }
 }

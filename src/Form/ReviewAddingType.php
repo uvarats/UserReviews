@@ -44,18 +44,16 @@ class ReviewAddingType extends AbstractType
     {
         $builder
             ->add('tags', TextType::class, [
-                'getter' => function (Review $review, FormInterface $form): string
-                {
+                'getter' => function (Review $review, FormInterface $form): string {
                     $tags = $review->getTags()->toArray();
                     return implode(', ', $tags);
                 },
-                'setter' => function (Review &$review, string $tags, FormInterface $form): void
-                {
+                'setter' => function (Review &$review, string $tags, FormInterface $form): void {
                     $tagsRepository = $this->entityManager->getRepository(Tag::class);
                     $explodedTags = explode(', ', $tags);
-                    foreach ($explodedTags as $tag){
+                    foreach ($explodedTags as $tag) {
                         $t = $tagsRepository->findOneBy(['tag' => $tag]);
-                        if(!$t){
+                        if (!$t) {
                             $t = new Tag();
                             $t->setTag($tag);
                             $this->entityManager->persist($t);

@@ -23,6 +23,7 @@ class FacebookController extends AbstractController
             ]);
     }
     #[Route('/connect/facebook/check', name: 'connect_facebook_check')]
-    public function connectCheck(Request $request, ClientRegistry $clientRegistry, LoggerInterface $logger){
+    public function connectCheck(Request $request, ClientRegistry $clientRegistry, LoggerInterface $logger)
+    {
     }
 }

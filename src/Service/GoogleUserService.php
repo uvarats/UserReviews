@@ -38,18 +38,18 @@ class GoogleUserService
         return new SelfValidatingPassport(
             new UserBadge(
                 $accessToken->getToken(),
-                function() use($client, $accessToken){
+                function () use ($client, $accessToken) {
                     $userRepository = $this->entityManager->getRepository(User::class);
                     /** @var GoogleUser $googleUser */
                     $googleUser = $client->fetchUserFromToken($accessToken);
                     $existingUser = $userRepository
                         ->findOneBy(['google_id' => $googleUser->getId()]);
-                    if($existingUser){
+                    if ($existingUser) {
                         return $existingUser;
                     }
                     $user = $userRepository
                         ->findOneBy(['email' => $googleUser->getEmail()]);
-                    if($user){
+                    if ($user) {
                         $user->setGoogleId($googleUser->getId());
                     } else {
                         $user = $this->socialsUserService->getGoogleUser($googleUser);

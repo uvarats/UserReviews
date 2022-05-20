@@ -44,12 +44,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $result = $this->getUserWithReviews($id);
         $likes = 0;
-        foreach ($result->getReviews() as $review){
+        foreach ($result->getReviews() as $review) {
             $likes += count($review->getLikes());
         }
         return $likes;
     }
-    public function getUserWithReviews(int $id){
+    public function getUserWithReviews(int $id)
+    {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT u, r

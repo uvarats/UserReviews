@@ -33,14 +33,13 @@ class FileUploader
             $filesystem->write('users/' . $fileName, file_get_contents($file->getPathname()));
             $iterator = $filesystem->listContents("")->getIterator();
             /** @var FileAttributes $file */
-            foreach($iterator as $file){
-                if($file->path() === 'users/' . $fileName){
+            foreach ($iterator as $file) {
+                if ($file->path() === 'users/' . $fileName) {
                     return $file->extraMetadata()["secure_url"];
                 }
             }
             return $fileName;
         } catch (FilesystemException $e) {
-
         }
         return null;
     }

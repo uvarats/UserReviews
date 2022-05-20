@@ -48,17 +48,17 @@ class ProfileController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        if($user){
+        if ($user) {
             $form = $this->createForm(ProfileEditType::class);
             $form->handleRequest($request);
-            if($form->isSubmitted() && $form->isValid()){
+            if ($form->isSubmitted() && $form->isValid()) {
                 $avatar = $form->get('avatar')->getData();
                 $username = $form->get('username')->getData();
-                if($avatar){
+                if ($avatar) {
                     $fileUrl = $uploader->upload($avatar);
                     $user->setAvatarUrl($fileUrl);
                 }
-                if($username){
+                if ($username) {
                     $user->setUsername($username);
                 }
                 $this->em->flush();

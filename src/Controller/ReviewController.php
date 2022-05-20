@@ -37,7 +37,7 @@ class ReviewController extends AbstractController
         $review = new Review();
         $form = $this->createForm(ReviewAddingType::class, $review);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $user = $this->getUser();
             /** @var Review $review */
@@ -49,7 +49,9 @@ class ReviewController extends AbstractController
             $this->entityManager->flush();
             return $this->redirectToRoute('review', ['id' => $review->getId()]);
         }
-        return $this->renderForm('review/add.html.twig', [
+        return $this->renderForm(
+            'review/add.html.twig',
+            [
                 'form' => $form,
             ]
         );
@@ -60,10 +62,10 @@ class ReviewController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         /** @var User $user */
         $user = $this->getUser();
-        if($review->getAuthor()->getId() === $user->getId() || $this->isGranted('ROLE_ADMIN')){
+        if ($review->getAuthor()->getId() === $user->getId() || $this->isGranted('ROLE_ADMIN')) {
             $form = $this->createForm(ReviewAddingType::class, $review);
             $form->handleRequest($request);
-            if($form->isSubmitted() && $form->isValid()){
+            if ($form->isSubmitted() && $form->isValid()) {
                 //$this->entityManager->persist($review);
                 $this->entityManager->flush();
                 return $this->redirectToRoute('review', ['id' => $review->getId()]);
@@ -80,7 +82,7 @@ class ReviewController extends AbstractController
         $review = $this->entityManager->getRepository(Review::class)->find($id);
         /** @var User $user */
         $user = $this->getUser();
-        if($review->getAuthor()->getId() === $user->getId() || $this->isGranted('ROLE_ADMIN')){
+        if ($review->getAuthor()->getId() === $user->getId() || $this->isGranted('ROLE_ADMIN')) {
             $this->entityManager->remove($review);
             $this->entityManager->flush();
         }
@@ -93,7 +95,7 @@ class ReviewController extends AbstractController
     public function removeComment(int $id): JsonResponse
     {
         $comment = $this->entityManager->getRepository(Comment::class)->find($id);
-        if($comment){
+        if ($comment) {
             $this->entityManager->remove($comment);
             $this->entityManager->flush();
             return new JsonResponse([
@@ -110,13 +112,13 @@ class ReviewController extends AbstractController
         $review = $this->entityManager
             ->getRepository(Review::class)
             ->find($id);
-        if($review){
+        if ($review) {
             $comment = new Comment();
             /** @var User $user */
             $user = $this->getUser();
             $form = $this->createForm(CommentType::class, $comment);
             $form->handleRequest($request);
-            if($form->isSubmitted() && $form->isValid()){
+            if ($form->isSubmitted() && $form->isValid()) {
                 /** @var Comment $comment */
                 $comment = $form->getData();
                 $comment->setAuthor($user)

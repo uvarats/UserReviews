@@ -24,8 +24,8 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param Tag $entity
+     * @param bool $flush
      */
     public function add(Tag $entity, bool $flush = true): void
     {
@@ -36,8 +36,8 @@ class TagRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param Tag $entity
+     * @param bool $flush
      */
     public function remove(Tag $entity, bool $flush = true): void
     {
@@ -58,12 +58,11 @@ class TagRepository extends ServiceEntityRepository
         /** @var Tag[] $result */
         $result = $query->getResult();
 
-        usort($result, function(Tag $t1, Tag $t2) {
+        usort($result, function (Tag $t1, Tag $t2) {
             $reviewsCount1 = $t1->getReviews()->count();
             $reviewsCount2 = $t2->getReviews()->count();
             return $reviewsCount1 === $reviewsCount2 ? 0 :
                 ($reviewsCount1 > $reviewsCount2 ? -1 : 1);
-
         });
         return $result;
     }
