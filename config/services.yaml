@@ -19,6 +19,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    App\Controller\SearchController:
+        arguments:
+            - '@fos_elastica.finder.review'
     App\Service\CloudService:
         arguments:
             - '%env(CLOUDINARY_CLOUD_NAME)%'

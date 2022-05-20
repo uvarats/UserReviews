@@ -14,7 +14,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
         "friendsofphp/php-cs-fixer": "^3.8",
-        "javer/sphinx-bundle": "^1.4",
+        "friendsofsymfony/elastica-bundle": "^6.1",
         "kartik-v/bootstrap-star-rating": "@dev",
         "knpuniversity/oauth2-client-bundle": "^2.9",
         "league/commonmark": "^2.2",

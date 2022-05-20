@@ -98,6 +98,15 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "elasticsearch/elasticsearch": {
+        "version": "v7.17.0"
+    },
+    "ezimuel/guzzlestreams": {
+        "version": "3.0.1"
+    },
+    "ezimuel/ringphp": {
+        "version": "1.2.0"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "3.8",
         "recipe": {
@@ -113,6 +122,18 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "friendsofsymfony/elastica-bundle": {
+        "version": "6.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "46c9cd2c1e07f0fcfd97e96f12b03b2e0845c4cd"
+        },
+        "files": [
+            "./config/packages/fos_elastica.yaml"
+        ]
+    },
     "guzzlehttp/guzzle": {
         "version": "7.4.1"
     },
@@ -124,9 +145,6 @@
     },
     "jakeasmith/http_build_url": {
         "version": "1.0.1"
-    },
-    "javer/sphinx-bundle": {
-        "version": "v1.4.0"
     },
     "kartik-v/bootstrap-star-rating": {
         "version": "v4.1.2"
@@ -182,6 +200,12 @@
     "nikic/php-parser": {
         "version": "v4.13.2"
     },
+    "nyholm/dsn": {
+        "version": "2.0.1"
+    },
+    "pagerfanta/pagerfanta": {
+        "version": "v3.6.1"
+    },
     "paragonie/random_compat": {
         "version": "v9.99.100"
     },
@@ -226,6 +250,12 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "react/promise": {
+        "version": "v2.9.0"
+    },
+    "ruflin/elastica": {
+        "version": "7.1.5"
     },
     "sensio/framework-extra-bundle": {
         "version": "6.2",

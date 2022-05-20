@@ -12,28 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-//    private PaginatedFinderInterface $finder;
-//
-//    /**
-//     * @param PaginatedFinderInterface $finder
-//     */
-//    public function __construct(PaginatedFinderInterface $finder)
-//    {
-//        $this->finder = $finder;
-//    }
+    private PaginatedFinderInterface $finder;
+
+    /**
+     * @param PaginatedFinderInterface $finder
+     */
+    public function __construct(PaginatedFinderInterface $finder)
+    {
+        $this->finder = $finder;
+    }
 
     #[Route('/{_locale<%app.supported_locales%>}/search', name: 'app_search')]
     public function index(Request $request): Response
     {
-//        $query = $request->request->get('request');
-//        $results = [];
-//        if(!empty($query)){
-//            $results = $this->finder->find($query);
-//        }
-//        return $this->render('search/index.html.twig', [
-//            'results' => $results,
-//            'query' => $query,
-//        ]);
-        return new Response();
+        $query = $request->query->filter("find");
+        $results = [];
+        if (!empty($query)) {
+            $results = $this->finder->find($query);
+        }
+        return $this->render('search/index.html.twig', [
+            'results' => $results,
+            'query' => $query,
+        ]);
     }
 }
