@@ -7,20 +7,21 @@ export default class extends Controller {
     static values = {
         removeUrl: String
     };
-    static modal;
+
     remove_modal(e){
         e.preventDefault();
-
-        this.modal = new Modal(this.modalTarget);
-        this.modal.show();
+        console.log('working');
+        this.confirm_modal = new Modal(this.modalTarget);
+        console.log(this.confirm_modal);
+        this.confirm_modal.show();
     }
     remove_review(e){
         e.preventDefault();
-
         axios.post(this.removeUrlValue)
             .then(function (response) {
                 console.log(response.data);
-                this.modal.hide();
+                location.reload();
             });
+        this.confirm_modal.hide();
     }
 }

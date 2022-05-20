@@ -9,17 +9,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class IsNameOccupiedValidator extends ConstraintValidator
 {
     private EntityManagerInterface $em;
+    private TranslatorInterface $translator;
 
     /**
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $this->em = $em;
+        $this->translator = $translator;
     }
 
     public function validate($value, Constraint $constraint)
@@ -39,7 +42,7 @@ class IsNameOccupiedValidator extends ConstraintValidator
         /** @var User $user */
         foreach ($repo as $user){
             if(strcasecmp($user->getUserIdentifier(), $value) === 0){
-                $this->context->buildViolation($constraint->message)
+                $this->context->buildViolation($this->translator->trans($constraint->message))
 //                    ->setParameter('{{ value }}', $value)
                     ->addViolation();
                 break;

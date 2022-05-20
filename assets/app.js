@@ -15,3 +15,4 @@ require("@popperjs/core");
 require("bootstrap");
 require('bootstrap-table');
 require('bootstrap-table/dist/locale/bootstrap-table-ru-RU.min');
+global.$ = global.jQuery = $;
